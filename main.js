@@ -29,17 +29,20 @@ function updateCart() {
 // Add to cart functionality
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
-        cartCount++;
-        updateCart();
-        
-        // Add animation
-        button.textContent = 'Added!';
-        button.style.backgroundColor = 'var(--success)';
-        
-        setTimeout(() => {
-            button.textContent = 'Add to Cart';
-            button.style.backgroundColor = 'var(--primary)';
-        }, 1000);
+        // Only animate if the button is for Add to Cart
+        if (button.textContent.trim() === 'Add to Cart') {
+            cartCount++;
+            updateCart();
+
+            // Add animation
+            button.textContent = 'Added!';
+            button.style.backgroundColor = 'var(--success)';
+
+            setTimeout(() => {
+                button.textContent = 'Add to Cart';
+                button.style.backgroundColor = 'var(--primary)';
+            }, 1000);
+        }
     });
 })
 // Custom package button
