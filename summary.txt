@@ -1,0 +1,32 @@
+  <div class="custom-package-card">
+          <div class="custom-slider-wrapper">
+            <button class="custom-slider-btn custom-prev">&#10094;</button>
+            <div class="custom-slider-images">
+              <img src="Asset/FSPMEN/FSPMEN_1.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
+              <img src="Asset/FSPMEN/FSPMEN_2.jpg" alt="FSPMEN_2" class="custom-slider-img">
+              <img src="Asset/FSPMEN/FSPMEN_3.jpg" alt="FSPMEN_3" class="custom-slider-img">
+              <img src="Asset/FSPMEN/FSPMEN_4.jpg" alt="FSPMEN_4" class="custom-slider-img">
+              <img src="Asset/FSPMEN/FSPMEN_5.jpg" alt="FSPMEN_5" class="custom-slider-img">
+            </div>
+            <button class="custom-slider-btn custom-next">&#10095;</button>
+          </div>
+          <div class="custom-package-info">
+            <h3>Large Size Boxer Package</h3>
+            <p><strong>Size:</strong> Large</p>
+            <p><strong>Package specification:</strong><br>
+              2 original hello boxer at 1 single pack<br>
+              1 pic 99V boxer
+            </p>
+            <p><strong>Product details:</strong><br>
+              Cotton material<br>
+              Stretchy<br>
+              Good quality material<br>
+              Adult use<br>
+              <p><strong>Colors available</strong><br>
+              <span class="color-badge color-gray"></span>
+              <span class="color-badge color-green"></span>
+              <span class="color-badge color-blue"></span>
+            </p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>

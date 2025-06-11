@@ -219,3 +219,26 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCart();
     }
 });
+
+// Custom slider for package cards
+document.querySelectorAll('.custom-package-card').forEach(card => {
+    const images = card.querySelectorAll('.custom-slider-img');
+    const prevBtn = card.querySelector('.custom-slider-btn.custom-prev');
+    const nextBtn = card.querySelector('.custom-slider-btn.custom-next');
+    let current = 0;
+
+    function showSlide(idx) {
+        images.forEach((img, i) => {
+            img.classList.toggle('custom-active', i === idx);
+        });
+    }
+
+    prevBtn.addEventListener('click', () => {
+        current = (current - 1 + images.length) % images.length;
+        showSlide(current);
+    });
+    nextBtn.addEventListener('click', () => {
+        current = (current + 1) % images.length;
+        showSlide(current);
+    });
+});
