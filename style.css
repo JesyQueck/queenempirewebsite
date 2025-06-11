@@ -1058,7 +1058,6 @@ header {
 .custom-pack{
     display: flex;
 }
-
 .color-gray {
     background: #6c757d;
 }
@@ -1072,6 +1071,12 @@ header {
 }
 .color-black {
     background: #000000;
+}
+.color-coral-pink {
+    background: #f88379;
+}
+.color-navy {
+    background: #000080;
 }
 .color-navy {
     background: #000080;
