@@ -290,16 +290,18 @@ header {
 }
 .package-card {
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
-    height: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 .package-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
 .package-badge {
     position: absolute;
@@ -314,25 +316,29 @@ header {
     z-index: 1;
 }
 .package-img {
-    width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
 }
 .package-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s;
+}
+.package-card:hover .package-img img {
+    transform: scale(1.05);
 }
 .package-card a{
     text-decoration: none;
     color: var(--light);
 }
 .package-info {
-    padding: 15px;
-    flex: 1;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 .package-info h3 {
     font-size: 1.5rem;
@@ -367,21 +373,20 @@ header {
     font-weight: 500;
 }
 .package-price {
-    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
 }
 .current-price {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--dark);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: 10px;
 }
 .old-price {
     font-size: 1.2rem;
     color: var(--gray);
     text-decoration: line-through;
-}
-.package-desc {
-    margin: 8px 0;
-    flex: 1;
 }
 /* Products Section */
 .products {
@@ -447,9 +452,13 @@ header {
     color: var(--dark);
 }
 .product-category {
-    font-size: 1.1em;
-    color: #4a5568;
-    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 .product-price {
     display: flex;
@@ -464,7 +473,12 @@ header {
     font-size: 1rem;
 }
 .product-actions {
-    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin: 1rem auto 0.5rem;
 }
 .add-to-cart {
     background: var(--primary);
@@ -480,32 +494,31 @@ header {
     text-align: center;
 }
 .check-package {
-    flex: 1;
-    padding: 8px 15px;
-    background: #e83e8c;
+    background: var(--dark);
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.check-package:hover {
-    background: #d6336c;
+    transition: background 0.3s;
+    flex: 1 1 50%;
+    min-width: 0;
+    text-align: center;
 }
 
 .wishlist {
-    padding: 8px;
-    background: #f7fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background: var(--light-gray);
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.wishlist:hover {
-    background: #edf2f7;
-    color: #e83e8c;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 /* Checkout Button */
 .checkout-section {
@@ -800,11 +813,10 @@ header {
     gap: 30px;
     align-items: stretch;
 }
-.package-products .package-card{
-    flex: 1 1 300px; 
+.package-products .package-card {
+    flex: 1 1 300px;
     display: flex;
     flex-direction: column;
-    height: 100%; 
     min-width: 320px;
     max-width: 350px;
     background: #fff;
@@ -835,6 +847,10 @@ header {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+.package-products .product-actions {
+    margin-top: auto;
+    padding-top: 15px;
 }
 /* Cart Page Styling */
 #cartItems {
