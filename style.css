@@ -24,6 +24,7 @@ body {
     color: var(--dark);
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
@@ -1384,7 +1385,7 @@ header {
 
 /* Glassmorphism background wrapper for Men-container */
 .glass-bg {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
