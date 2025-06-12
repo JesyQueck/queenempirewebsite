@@ -1112,6 +1112,7 @@ header {
 @media (max-width: 768px) {
     .hero {
         height: 60vh;
+        margin: auto;
     }
     .hero h1 {
         font-size: 2.3rem;
@@ -1130,12 +1131,13 @@ header {
         right: 20px;
     }
 }
-@media (max-width: 576px) {
+@media (width < 576px) {
     .header-top .nav-links{
      display: none;
 
     }
     .hero {
+        margin: auto;
         height: 70vh;
         min-height: 400px;
     }
@@ -1156,7 +1158,7 @@ header {
     }
 
   .menu {
-    display: inline-flex !important;
+    display: flex !important;
 
   }
   .header-top.sidebar {
@@ -1169,16 +1171,19 @@ header {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+    margin: auto;
   }
   .women-container {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+    margin: auto;
   }
   .kid-container {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+    margin: auto;
   }
   .custom-package-card {
     max-width: 100%;
@@ -1271,11 +1276,12 @@ header {
     line-height: 1;
 }
 
-@media (max-width: 576px) {
+@media (width < 576px) {
     .men-modal-close {
         display: flex;
     }
 }
+
 .custom-package-card {
     display: none;
 }
