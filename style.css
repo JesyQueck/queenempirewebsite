@@ -1013,6 +1013,7 @@ header {
 .custom-slider-img {
     width: 100%;
     height: 220px;
+    display: none;
     object-fit: cover;
     position: absolute;
     left: 0; top: 0;
@@ -1025,6 +1026,7 @@ header {
     opacity: 1;
     position: relative;
     z-index: 2;
+    display: block;
 }
 .custom-slider-btn {
     position: absolute;
@@ -1168,6 +1170,16 @@ header {
     gap: 16px;
     align-items: stretch;
   }
+  .women-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .kid-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
   .custom-package-card {
     max-width: 100%;
     width: 100%;
@@ -1230,7 +1242,7 @@ header {
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
-    padding-top: 30px; /* Add this line for top spacing */
+    padding: 30px; /* Add this line for top spacing */
 }
 
 .custom-package-card {
@@ -1264,7 +1276,6 @@ header {
         display: flex;
     }
 }
-
 .custom-package-card {
     display: none;
 }
