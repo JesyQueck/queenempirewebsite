@@ -950,7 +950,7 @@ header {
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
     transition: background 0.2s;
 }
 .checkout-btn:hover:enabled {
@@ -990,7 +990,8 @@ header {
     flex-direction: column;
 }
 .custom-package-card.active {
-    display: flex;
+    display: flex !important;
+    flex-direction: column;
 }
 .custom-slider-wrapper {
     position: relative;
@@ -1271,9 +1272,50 @@ header {
     display: flex;
     flex-direction: column;
 }
+.custom-pack-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0 0 0;
+    gap: 16px;
+}
+.women-modal-close {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #e83e8c;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 2rem;
+    z-index: 10001;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+@media (max-width: 576px) {
+    .women-modal-close {
+        display: flex;
+    }
+}
 
-#prevCustomCard,
-#nextCustomCard {
+.custom-package-card {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.custom-card-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     background: #e83e8c;
     color: #fff;
     border: none;
@@ -1282,24 +1324,33 @@ header {
     height: 44px;
     font-size: 1.5rem;
     font-weight: bold;
-    margin: 0 10px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
-    transition: background 0.2s, transform 0.2s;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    transition: background 0.2s, transform 0.2s;
 }
 
-#prevCustomCard:hover,
-#nextCustomCard:hover {
-    background: #c2185b;
-    transform: scale(1.08);
+.custom-card-nav.custom-prev {
+    left: -24px;
+    right: auto;
+    z-index: 2;
 }
-.custom-pack-nav {
+.custom-card-nav.custom-next {
+    right: -24px;
+    left: auto;
+    z-index: 2;
+}
+
+.custom-card-nav:hover {
+    background: #c2185b;
+    transform: translateY(-50%) scale(1.08);
+}
+.custom-card-actions {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 24px 0 0 0;
     gap: 16px;
+    margin-top: 18px;
+    justify-content: flex-start;
 }

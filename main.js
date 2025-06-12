@@ -18,7 +18,9 @@ const customPackageBtn = document.getElementById('customPackageBtn')
 // Update cart display
 function updateCart() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cartElement) cartElement.textContent = cart.length;
+    document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = cart.length;
+    });
     if (checkoutCount) checkoutCount.textContent = cart.length;
     if (checkoutSection) {
         checkoutSection.style.display = cart.length > 0 ? 'block' : 'none';
@@ -29,10 +31,23 @@ function updateCart() {
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
         if (button.textContent.trim() === 'Add to Cart') {
-            const card = button.closest('.product-card, .package-card');
-            const name = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Product';
-            const priceElem = card.querySelector('.current-price');
-            const price = priceElem ? parseFloat(priceElem.textContent.replace(/[^0-9.]/g, '')) : 0;
+            const card = button.closest('.product-card, .package-card, .custom-package-card');
+            let name = 'Product';
+            let price = 0;
+
+            // Try to get name and price from data attributes first
+            if (card) {
+                name = card.getAttribute('data-name') || name;
+                price = parseFloat(card.getAttribute('data-price')) || price;
+
+                // Fallback to h3 and .current-price if not present
+                if (!name && card.querySelector('h3')) {
+                    name = card.querySelector('h3').textContent;
+                }
+                if (!price && card.querySelector('.current-price')) {
+                    price = parseFloat(card.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
+                }
+            }
 
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             cart.push({ name, price });
@@ -220,29 +235,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Custom slider for package cards
-document.querySelectorAll('.custom-package-card').forEach(card => {
-    const images = card.querySelectorAll('.custom-slider-img');
-    const prevBtn = card.querySelector('.custom-slider-btn.custom-prev');
-    const nextBtn = card.querySelector('.custom-slider-btn.custom-next');
-    let current = 0;
-
-    function showSlide(idx) {
-        images.forEach((img, i) => {
-            img.classList.toggle('custom-active', i === idx);
-        });
-    }
-
-    prevBtn.addEventListener('click', () => {
-        current = (current - 1 + images.length) % images.length;
-        showSlide(current);
-    });
-    nextBtn.addEventListener('click', () => {
-        current = (current + 1) % images.length;
-        showSlide(current);
-    });
-});
-
 // Show Men-container as modal when "Check package" under Men's Package is clicked
 document.addEventListener('DOMContentLoaded', function() {
     const menCheckBtn = document.getElementById('menCheckPackageBtn');
@@ -266,8 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
     menContainer.addEventListener('click', function(e) {
         if (e.target === menContainer) {
             menContainer.classList.remove('centered-modal');
-            menContainer.style.display = '';
-            // Show all main content again
+            menContainer.style.display = 'none'; // <-- Add this line
             document.querySelectorAll('section, header, footer').forEach(el => {
                 el.style.display = '';
             });
@@ -281,8 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menCloseBtn && menContainer) {
         menCloseBtn.addEventListener('click', function() {
             menContainer.classList.remove('centered-modal');
-            menContainer.style.display = 'none';
-            // Optionally show other content again if you hide it when opening
+            menContainer.style.display = 'none'; // <-- This hides the modal and the close button
             document.querySelectorAll('section, header, footer').forEach(el => {
                 el.style.display = '';
             });
@@ -290,10 +280,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// --- KEEP THIS BLOCK: Card slider logic ---
 document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.custom-package-card');
-    const prevBtn = document.getElementById('prevCustomCard');
-    const nextBtn = document.getElementById('nextCustomCard');
+    const cards = document.querySelectorAll('#customPack .custom-package-card');
     let current = 0;
 
     function showCard(idx) {
@@ -305,15 +294,100 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cards.length) {
         showCard(current);
 
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', function() {
-                current = (current - 1 + cards.length) % cards.length;
-                showCard(current);
+        cards.forEach((card, idx) => {
+            const prevBtn = card.querySelector('.custom-card-nav.custom-prev');
+            const nextBtn = card.querySelector('.custom-card-nav.custom-next');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    current = (current - 1 + cards.length) % cards.length;
+                    showCard(current);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    current = (current + 1) % cards.length;
+                    showCard(current);
+                });
+            }
+        });
+    }
+});
+// --- END CARD SLIDER LOGIC ---
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Men
+    const menCheckBtn = document.getElementById('menCheckPackageBtn');
+    const menContainer = document.getElementById('custom-package');
+    const menCloseBtn = document.getElementById('menModalCloseBtn');
+
+    if (menCheckBtn && menContainer) {
+        menCheckBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                if (el !== menContainer) el.style.display = 'none';
             });
-            nextBtn.addEventListener('click', function() {
-                current = (current + 1) % cards.length;
-                showCard(current);
+            menContainer.classList.add('centered-modal');
+            menContainer.style.display = 'flex';
+        });
+    }
+    if (menCloseBtn && menContainer) {
+        menCloseBtn.addEventListener('click', function() {
+            menContainer.classList.remove('centered-modal');
+            menContainer.style.display = 'none'; // <-- This hides the modal and the close button
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                el.style.display = '';
             });
-        }
+        });
+    }
+
+    // Women
+    const womenCheckBtn = document.getElementById('womenCheckPackageBtn');
+    const womenContainer = document.getElementById('custom-package-women');
+    const womenCloseBtn = document.getElementById('womenModalCloseBtn');
+    if (womenCheckBtn && womenContainer) {
+        womenCheckBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                if (el !== womenContainer) el.style.display = 'none';
+            });
+            womenContainer.classList.add('centered-modal');
+            womenContainer.style.display = 'flex';
+        });
+    }
+    if (womenCloseBtn && womenContainer) {
+        womenCloseBtn.addEventListener('click', function() {
+            womenContainer.classList.remove('centered-modal');
+            womenContainer.style.display = 'none';
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                el.style.display = '';
+            });
+        });
+    }
+
+    // Kids
+    const kidsCheckBtn = document.getElementById('kidsCheckPackageBtn');
+    const kidsContainer = document.getElementById('custom-package-kids');
+    const kidsCloseBtn = document.getElementById('kidsModalCloseBtn');
+    if (kidsCheckBtn && kidsContainer) {
+        kidsCheckBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                if (el !== kidsContainer) el.style.display = 'none';
+            });
+            kidsContainer.classList.add('centered-modal');
+            kidsContainer.style.display = 'flex';
+        });
+    }
+    if (kidsCloseBtn && kidsContainer) {
+        kidsCloseBtn.addEventListener('click', function() {
+            kidsContainer.classList.remove('centered-modal');
+            kidsContainer.style.display = 'none';
+            document.querySelectorAll('section, header, footer').forEach(el => {
+                el.style.display = '';
+            });
+        });
     }
 });

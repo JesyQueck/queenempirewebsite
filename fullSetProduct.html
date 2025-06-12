@@ -5,35 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Queens Empire - Premium Underwear Collections</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-          <!-- Header Sidebar-->
+            <!-- Header Sidebar-->
             <div class="header-top ">
                 <a href="#" class="logo">
                     <i class="fas fa-crown"></i> Queens Empire
                 </a>
-               <ul class="nav-links">
+                <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
-                         <a href="cart.html"         class="cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                         <button class="menu" aria-label="Open Menu">
-  <i class="fas fa-bars"></i>
-                         </button>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu" aria-label="Open Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-
             <div class="header-top sidebar">
                 <button type="button" class="sidebar-cancel" aria-label="Close Sidebar">
-                  <i class="fas fa-times"></i>
+                    <i class="fas fa-times"></i>
                 </button>
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
@@ -51,9 +50,8 @@
             <h2>Full Set Package</h2>
             <p>High-quality underwear, vests, and camisoles for all ages</p>
         </div>
-
         <div class="package-products">
-              <!-- Men -->
+            <!-- Men -->
             <div class="package-card">
                 <div class="product-img">
                     <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="G-strings">
@@ -64,13 +62,11 @@
                         <span class="current-price">$9.99</span>
                     </div>
                     <div class="product-actions">
-                        <button class="check-package" id="menCheckPackageBtn">Check package
-                        </button>
+                        <button class="check-package" id="menCheckPackageBtn">Check package</button>
                         <button class="wishlist"><i class="far fa-heart"></i></button>
                     </div>
                 </div>
             </div>
-
             <!-- Women-->
             <div class="package-card">
                 <div class="package-img">
@@ -82,13 +78,11 @@
                         <span class="current-price">$8.99</span>
                     </div>
                     <div class="product-actions">
-                        <button class="check-package">Check package
-                        </button>
+                        <button class="check-package" id="womenCheckPackageBtn">Check package</button>
                         <button class="wishlist"><i class="far fa-heart"></i></button>
                     </div>
                 </div>
             </div>
-
             <!-- Kids -->
             <div class="package-card">
                 <div class="package-img">
@@ -100,8 +94,7 @@
                         <span class="current-price">$10.99</span>
                     </div>
                     <div class="product-actions">
-                        <button class="check-package">Check package
-                        </button>
+                        <button class="check-package" id="kidsCheckPackageBtn">Check package</button>
                         <button class="wishlist"><i class="far fa-heart"></i></button>
                     </div>
                 </div>
@@ -113,278 +106,449 @@
     <section id="custom-package" class="Men-container">
         <button class="men-modal-close" id="menModalCloseBtn" aria-label="Close">&times;</button>
         <div class="custom-pack" id="customPack">
-          <div class="custom-package-card">
-            <div class="custom-slider-wrapper">
-              <button class="custom-slider-btn custom-prev">&#10094;</button>
-              <div class="custom-slider-images">
-                <img src="Asset/FSPMEN/FSPMEN_1.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
-                <img src="Asset/FSPMEN/FSPMEN_2.jpg" alt="FSPMEN_2" class="custom-slider-img">
-                <img src="Asset/FSPMEN/FSPMEN_3.jpg" alt="FSPMEN_3" class="custom-slider-img">
-                <img src="Asset/FSPMEN/FSPMEN_4.jpg" alt="FSPMEN_4" class="custom-slider-img">
-                <img src="Asset/FSPMEN/FSPMEN_5.jpg" alt="FSPMEN_5" class="custom-slider-img">
-              </div>
-              <button class="custom-slider-btn custom-next">&#10095;</button>
+            <!-- CARD 1 -->
+            <div class="custom-package-card active" data-name="Men's Large Set" data-price="12000">
+                <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPMEN/FSPMEN_1.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPMEN/FSPMEN_2.jpg" alt="FSPMEN_2" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_3.jpg" alt="FSPMEN_3" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_4.jpg" alt="FSPMEN_4" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_5.jpg" alt="FSPMEN_5" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Size:</strong> Large</p>
+                    <p><strong>Package specification:</strong><br>
+                        2 original hello boxer at 1 single pack<br>
+                        1 pic 99V boxer
+                    </p>
+                    <p><strong>Product details:</strong><br>
+                        Cotton material<br>
+                        Stretchy<br>
+                        Good quality material<br>
+                        Adult use<br>
+                        <p><strong>Colors available</strong><br>
+                            <span class="color-badge color-gray"></span>
+                            <span class="color-badge color-green"></span>
+                            <span class="color-badge color-blue"></span>
+                        </p>
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
             </div>
-            <div class="custom-package-info">
-              <p><strong>Size:</strong> Large</p>
-              <p><strong>Package specification:</strong><br>
-                2 original hello boxer at 1 single pack<br>
-                1 pic 99V boxer
-              </p>
-              <p><strong>Product details:</strong><br>
-                Cotton material<br>
-                Stretchy<br>
-                Good quality material<br>
-                Adult use<br>
-                <p><strong>Colors available</strong><br>
-                <span class="color-badge color-gray"></span>
-                <span class="color-badge color-green"></span>
-                <span class="color-badge color-blue"></span>
-              </p>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-
+            <!-- CARD 2 -->
             <div class="custom-package-card">
-            <div class="custom-slider-wrapper">
-              <button class="custom-slider-btn custom-prev">&#10094;</button>
-              <div class="custom-slider-images">
-                <img src="Asset/FSPMEN/FSPMEN_6.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
-                <img src="Asset/FSPMEN/FSPMEN_7.jpg" alt="FSPMEN_2" class="custom-slider-img">
-                <img src="Asset/FSPMEN/FSPMEN_8.jpg" alt="FSPMEN_3" class="custom-slider-img">
-              </div>
-              <button class="custom-slider-btn custom-next">&#10095;</button>
+                <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPMEN/FSPMEN_6.jpg" alt="FSPMEN_6" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPMEN/FSPMEN_7.jpg" alt="FSPMEN_7" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_8.jpg" alt="FSPMEN_8" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Size:</strong> Extra Large XL</p>
+                    <p><strong>Package specification:</strong><br>
+                        2 original seamless boxer <br>
+                        1 pic 99V boxer
+                    </p>
+                    <p><strong>Product details:</strong><br>
+                        Sewn to fitl<br>
+                        Original pack from the company<br>
+                        Breathable <br>
+                        High quality<br>
+                        Adult use<br>
+                        <p><strong>Colors available</strong><br>
+                            <span class="color-badge color-black"></span>
+                            <span class="color-badge color-navy"></span>
+                        </p>
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
             </div>
-            <div class="custom-package-info">
-              <p><strong>Size:</strong> Extra Large XL</p>
-              <p><strong>Package specification:</strong><br>
-                2 original seamless boxer <br>
-                1 pic 99V boxer
-              </p>
-              <p><strong>Product details:</strong><br>
-                Sewn to fitl<br>
-                Original pack from the company<br>
-                Breathable <br>
-                High quality<br>
-                Adult use<br>
-                <p><strong>Colors available</strong><br>
-                <span class="color-badge color-black"></span>
-                <span class="color-badge color-navy"></span>
-              </p>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-
+            <!-- CARD 3 -->
             <div class="custom-package-card">
-            <div class="custom-slider-wrapper">
-              <button class="custom-slider-btn custom-prev">&#10094;</button>
-              <div class="custom-slider-images">
-                <img src="Asset/FSPMEN/FSPMEN_9.jpg" alt="FSPMEN_9" class="custom-slider-img custom-active">
-                <img src="Asset/FSPMEN/FSPMEN_10.jpg" alt="FSPMEN_10" class="custom-slider-img">
-              </div>
-              <button class="custom-slider-btn custom-next">&#10095;</button>
+                <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPMEN/FSPMEN_9.jpg" alt="FSPMEN_9" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPMEN/FSPMEN_10.jpg" alt="FSPMEN_10" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Size:</strong> Extra large xL</p>
+                    <p><strong>Package specification:</strong><br>
+                        2 original hello boxer in a single pack<br>
+                        1 pic 99V boxer
+                    </p>
+                    <p><strong>Product details:</strong><br>
+                        Original pack from the company <br>
+                        <p><strong>Colors available</strong><br>
+                            <span class="color-badge color-green"></span>
+                            <span class="color-badge color-coral-pink"></span>
+                            <span class="color-badge color-black"></span>
+                        </p>
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
             </div>
-            <div class="custom-package-info">
-              <p><strong>Size:</strong> Extra large xL
-              </p>
-              <p><strong>Package specification:</strong><br>
-                2 original hello boxer in a single pack<br>
-                1 pic 99V boxer
-              </p>
-              <p><strong>Product details:</strong><br>
-                Original pack from the company <br>
-                <p><strong>Colors available</strong><br>
-                <span class="color-badge color-green"></span>
-                <span class="color-badge color-coral-pink"></span>
-                <span class="color-badge color-black"></span>
-              </p>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-
+            <!-- CARD 4 -->
             <div class="custom-package-card">
-            <div class="custom-slider-wrapper">
-              <button class="custom-slider-btn custom-prev">&#10094;</button>
-              <div class="custom-slider-images">
-                <img src="Asset/FSPMEN/FSPMEN_16.jpg" alt="FSPMEN_16" class="custom-slider-img custom-active">
-                <img src="Asset/FSPMEN/FSPMEN_17.jpg" alt="FSPMEN_17" class="custom-slider-img">
-              </div>
-              <button class="custom-slider-btn custom-next">&#10095;</button>
+                <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPMEN/FSPMEN_16.jpg" alt="FSPMEN_16" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPMEN/FSPMEN_17.jpg" alt="FSPMEN_17" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Size:</strong> Extra large XL</p>
+                    <p><strong>Package specification:</strong><br>
+                        2-1 Original M&S singlets  <br>
+                        1 single pack seamless boxer<br>
+                        1 pic 99V cotton boxer <br>
+                        1 condom boxer
+                    </p>
+                    <p><strong>Product details:</strong><br>
+                        Sewn to fit<br>
+                        Original pack from the company <br>
+                        High quality<br>
+                        Medium stretch<br>
+                        Adult use<br>
+                        <p><strong>Colors available</strong><br>
+                            <span class="color-badge color-gray"></span>
+                        </p>
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
             </div>
-            <div class="custom-package-info">
-              <p><strong>Size:</strong> Extra large XL
-              </p>
-              <p><strong>Package specification:</strong><br>
-              2-1 Original M&S singlets <br>
-              3 original hello boxer in a single pack <br>
-              1 pic 99V cotton boxer
-              </p>
-              <p><strong>Product details:</strong><br>
-                Sewn to fit<br>
-                Original pack from the company <br>
-                High quality<br>
-                Medium stretch<br>
-                Adult use<br>
-                <p><strong>Colors available</strong><br>
-                <span class="color-badge color-gray"></span>
-                <span class="color-badge color-black"></span>
-              </p>
-              <button class="add-to-cart">Add to Cart</button>
-            </div>
-          </div>
-
-
+            <!-- CARD 5 -->
             <div class="custom-package-card">
-          <div class="custom-slider-wrapper">
-            <button class="custom-slider-btn custom-prev">&#10094;</button>
-            <div class="custom-slider-images">
-              <img src="Asset/FSPMEN/FSPMEN_1.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
-              <img src="Asset/FSPMEN/FSPMEN_2.jpg" alt="FSPMEN_2" class="custom-slider-img">
-              <img src="Asset/FSPMEN/FSPMEN_3.jpg" alt="FSPMEN_3" class="custom-slider-img">
-              <img src="Asset/FSPMEN/FSPMEN_4.jpg" alt="FSPMEN_4" class="custom-slider-img">
-              <img src="Asset/FSPMEN/FSPMEN_5.jpg" alt="FSPMEN_5" class="custom-slider-img">
+                <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPMEN/FSPMEN_1.jpg" alt="FSPMEN_1" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPMEN/FSPMEN_2.jpg" alt="FSPMEN_2" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_3.jpg" alt="FSPMEN_3" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_4.jpg" alt="FSPMEN_4" class="custom-slider-img">
+                        <img src="Asset/FSPMEN/FSPMEN_5.jpg" alt="FSPMEN_5" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Size:</strong> XXL</p>
+                    <p><strong>Package specification:</strong><br>
+                        2-1 original M&S singlets <br>
+                        3 original hello boxer in a single package <br>
+                        Original pack from the company
+                    </p>
+                    <p><strong>Product details:</strong><br>
+                        Sewn to fit<br>
+                        Medium stretch<br>
+                        High quality<br>
+                        Adult use<br>
+                        <p><strong>Colors available</strong><br>
+                            <span class="color-badge color-black"></span>
+                            <span class="color-badge color-gray"></span>
+                        </p>
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
             </div>
-            <button class="custom-slider-btn custom-next">&#10095;</button>
-          </div>
-          <div class="custom-package-info">
-            <p><strong>Size:</strong> XXL</p>
-            <p><strong>Package specification:</strong><br>
-              2-1 original M&S singlets <br>
-              3 original hello boxer in a single package <br>
-              Original pack from the company
-            </p>
-            <p><strong>Product details:</strong><br>
-              Sewn to fit<br>
-              Medium stretch<br>
-              High quality<br>
-              Adult use<br>
-              <p><strong>Colors available</strong><br>
-              <span class="color-badge color-black"></span>
-              <span class="color-badge color-gray"></span>
-            </p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-        </div>
-
-
-        <div class="custom-pack-nav">
-          <button id="prevCustomCard" aria-label="Previous">&larr;</button>
-          <button id="nextCustomCard" aria-label="Next">&rarr;</button>
         </div>
     </section>
 
- <!-- Footer -->
- <footer style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
-            <!-- About Queens Empire -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">About Queens Empire</h3>
-                <p style="color: #a0aec0; margin-bottom: 20px; line-height: 1.7;">
-                    Queens Empire Broekies Ltd. is a premium underwear brand specializing in high-quality, comfortable 
-                    undergarments for both children and adults. Since our founding, we've been committed to providing 
-                    stylish, durable underwear that combines fashion with functionality.
-                </p>
-                <div style="display: flex; margin-top: 20px;">
-                    <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+    <!-- Women's Custom Package Section (initially hidden) -->
+    <section id="custom-package-women" class="Women-container" style="display:none; margin-top:40px;">
+        <button class="women-modal-close" id="womenModalCloseBtn" aria-label="Close">&times;</button>
+        <div class="custom-pack" id="customPackWomen">
+            <div class="custom-package-card active" data-name="Women's Large Set" data-price="11000">
+                <button class="custom-card_nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPWOMEN/FSPWOMEN_1.jpg" alt="FSPWOMEN_1" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPWOMEN/FSPWOMEN_2.jpg" alt="FSPWOMEN_2" class="custom-slider-img">
+                        <img src="Asset/FSPWOMEN/FSPWOMEN_3.jpg" alt="FSPWOMEN_3" class="custom-slider-img">
+                        <img src="Asset/FSPWOMEN/FSPWOMEN_4.jpg" alt="FSPWOMEN_4" class="custom-slider-img">
+                        <img src="Asset/FSPWOMEN/FSPWOMEN_5.jpg" alt="FSPWOMEN_5" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Full set package for women’s:</strong></p>
+                    <p><strong>Package specification:</strong><br>
+                        9 items bag<br>
+                        8 items bag<br>
+                        6 item bag
+                    </p>
+                    <p><strong>Product Description:</strong><br>
+                        Type: American striped<br>
+                        Laura Ashley<br>
+                        Adrienne<br>
+                        Seamless Condom<br>
+                        Top bra<br>
+                        V-string<br>
+                        High silk satin<br>
+                        Ruffles<br>
+                        Thong<br>
+                        Top bra
+                    </p>
+                    <p><strong>FABRIC ELASTICITY:</strong><br>
+                        High stretchy<br>
+                        Mid elasticity<br>
+                        Low waist band
+                    </p>
+                    <p><strong>MATERIALS:</strong><br>
+                        Cotton<br>
+                        Seamless<br>
+                        Cotton Blend
+                    </p>
+                    <p><strong>STYLES:</strong><br>
+                        Sexy<br>
+                        Sport<br>
+                        Elegant
+                    </p>
+                    <p><strong>APPLICABLE:</strong><br>
+                        Adult, Size: Extra large run xxxL<br>
+                        9 item bags<br>
+                        Light and full stretch
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kids Custom Package Section (initially hidden) -->
+    <section id="custom-package-kids" class="Kids-container" style="display:none; margin-top:40px;">
+        <button class="kids-modal-close" id="kidsModalCloseBtn" aria-label="Close">&times;</button>
+        <div class="custom-pack" id="customPackKids">
+            <div class="custom-package-card active" data-name="Kids Large Set" data-price="9000">
+                <button class="custom-card_nav custom-prev" aria-label="Previous">&larr;</button>
+                <div class="custom-slider-wrapper">
+                    <button class="custom-slider-btn custom-prev">&#10094;</button>
+                    <div class="custom-slider-images">
+                        <img src="Asset/FSPKIDS/FSPKIDS_1.jpg" alt="FSPKIDS_1" class="custom-slider-img custom-active">
+                        <img src="Asset/FSPKIDS/FSPKIDS_2.jpg" alt="FSPKIDS_2" class="custom-slider-img">
+                        <img src="Asset/FSPKIDS/FSPKIDS_3.jpg" alt="FSPKIDS_3" class="custom-slider-img">
+                        <img src="Asset/FSPKIDS/FSPKIDS_4.jpg" alt="FSPKIDS_4" class="custom-slider-img">
+                        <img src="Asset/FSPKIDS/FSPKIDS_5.jpg" alt="FSPKIDS_5" class="custom-slider-img">
+                    </div>
+                    <button class="custom-slider-btn custom-next">&#10095;</button>
+                </div>
+                <div class="custom-package-info">
+                    <p><strong>Full set package for kids:</strong></p>
+                    <p><strong>Package specification:</strong><br>
+                        9 items bag<br>
+                        8 items bag<br>
+                        6 item bag
+                    </p>
+                    <p><strong>Product Description:</strong><br>
+                        Type: American striped<br>
+                        Laura Ashley<br>
+                        Adrienne<br>
+                        Seamless Condom<br>
+                        Top bra<br>
+                        V-string<br>
+                        High silk satin<br>
+                        Ruffles<br>
+                        Thong<br>
+                        Top bra
+                    </p>
+                    <p><strong>FABRIC ELASTICITY:</strong><br>
+                        High stretchy<br>
+                        Mid elasticity<br>
+                        Low waist band
+                    </p>
+                    <p><strong>MATERIALS:</strong><br>
+                        Cotton<br>
+                        Seamless<br>
+                        Cotton Blend
+                    </p>
+                    <p><strong>STYLES:</strong><br>
+                        Sexy<br>
+                        Sport<br>
+                        Elegant
+                    </p>
+                    <p><strong>APPLICABLE:</strong><br>
+                        Adult, Size: Extra large run xxxL<br>
+                        9 item bags<br>
+                        Light and full stretch
+                    </p>
+                    <div class="custom-card-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="custom-card-nav custom-next" aria-label="Next">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <!-- About Queens Empire -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">About Queens Empire</h3>
+                    <p style="color: #a0aec0; margin-bottom: 20px; line-height: 1.7;">
+                        Queens Empire Broekies Ltd. is a premium underwear brand specializing in high-quality, comfortable 
+                        undergarments for both children and adults. Since our founding, we've been committed to providing 
+                        stylish, durable underwear that combines fashion with functionality.
+                    </p>
+                    <div style="display: flex; margin-top: 20px;">
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Customer Service -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Customer Service</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Shipping & Returns</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Size Guide</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Track Order</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Shop -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Shop</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">All Products</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Full Set Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aecb; text-decoration: none; transition: color 0.3s;">Half Set Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Thank You Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">My Choice Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">New Arrivals</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Contact Information -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Contact Us</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 15px; color: #e83e8c; margin-top: 4px;"></i>
+                            <span style="color: #a0aec0;">Ijebu ode stadium road after idomila area, Rasonwa Alli Kareem street new site</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-phone-alt" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <span style="color: #a0aec0;">+2348066418647</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-envelope" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <span style="color: #a0aec0;">queenempire47@gmail.com</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-clock" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <span style="color: #a0aec0;">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <!-- Customer Service -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Customer Service</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Shipping & Returns</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Size Guide</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Track Order</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Shop -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Shop</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">All Products</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Full Set Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Half Set Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Thank You Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">My Choice Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">New Arrivals</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Contact Information -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Contact Us</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                        <i class="fas fa-map-marker-alt" style="margin-right: 15px; color: #e83e8c; margin-top: 4px;"></i>
-                        <span style="color: #a0aec0;">Ijebu ode stadium road after idomila area, Rasonwa Alli Kareem street new site</span>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-phone-alt" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <span style="color: #a0aec0;">+2348066418647</span>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-envelope" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <span style="color: #a0aec0;">queenempire47@gmail.com</span>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-clock" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <span style="color: #a0aec0;">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</span>
-                    </li>
-                </ul>
+            <!-- Copyright -->
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0; font-size: 0.9rem;">
+                <p>&copy; 2023 Queens Empire Broekies Ltd. All Rights Reserved.</p>
             </div>
         </div>
+    </footer>
 
-        <!-- Copyright -->
-        <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0; font-size: 0.9rem;">
-            <p>&copy; 2023 Queens Empire Broekies Ltd. All Rights Reserved.</p>
-        </div>
+    <!-- Success Notification -->
+    <div class="notification" id="successNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>Payment confirmed! Your order is being processed.</span>
     </div>
-</footer>
-
-<!-- Success Notification -->
-<div class="notification" id="successNotification">
-    <i class="fas fa-check-circle"></i>
-    <span>Payment confirmed! Your order is being processed.</span>
-</div>
 
     <script src="main.js"></script>
 </body>
