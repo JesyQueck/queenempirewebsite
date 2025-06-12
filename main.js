@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Show Men-container as modal when "Check package" under Men's Package is clicked
 document.addEventListener('DOMContentLoaded', function() {
     const menCheckBtn = document.getElementById('menCheckPackageBtn');
-    const menContainer = document.getElementById('custom-package');
+    const menContainer = document.getElementById('custom-package-men');
     const body = document.body;
 
     if (menCheckBtn && menContainer) {
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const menCloseBtn = document.getElementById('menModalCloseBtn');
-    const menContainer = document.getElementById('custom-package');
+    const menContainer = document.getElementById('custom-package-men');
     if (menCloseBtn && menContainer) {
         menCloseBtn.addEventListener('click', function() {
             menContainer.classList.remove('centered-modal');
@@ -320,24 +320,26 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Men
     const menCheckBtn = document.getElementById('menCheckPackageBtn');
-    const menContainer = document.getElementById('custom-package');
+    const menContainer = document.getElementById('custom-package-men');
     const menCloseBtn = document.getElementById('menModalCloseBtn');
-
-    if (menCheckBtn && menContainer) {
+    const glassBgMen = document.getElementById('glassBgMen');
+    if (menCheckBtn && menContainer && glassBgMen) {
         menCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                if (el !== menContainer) el.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+                if (el !== glassBgMen) el.style.display = 'none';
             });
+            glassBgMen.style.display = 'block';
             menContainer.classList.add('centered-modal');
             menContainer.style.display = 'flex';
         });
     }
-    if (menCloseBtn && menContainer) {
+    if (menCloseBtn && menContainer && glassBgMen) {
         menCloseBtn.addEventListener('click', function() {
             menContainer.classList.remove('centered-modal');
             menContainer.style.display = 'none';
-            document.querySelectorAll('section, header, footer').forEach(el => {
+            glassBgMen.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
                 el.style.display = '';
             });
         });
