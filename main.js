@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menCloseBtn && menContainer) {
         menCloseBtn.addEventListener('click', function() {
             menContainer.classList.remove('centered-modal');
-            menContainer.style.display = 'none'; // <-- This hides the modal and the close button
+            menContainer.style.display = 'none';
             document.querySelectorAll('section, header, footer').forEach(el => {
                 el.style.display = '';
             });
@@ -347,21 +347,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const womenCheckBtn = document.getElementById('womenCheckPackageBtn');
     const womenContainer = document.getElementById('custom-package-women');
     const womenCloseBtn = document.getElementById('womenModalCloseBtn');
-    if (womenCheckBtn && womenContainer) {
+    const glassBgWomen = document.getElementById('glassBgWomen');
+    if (womenCheckBtn && womenContainer && glassBgWomen) {
         womenCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                if (el !== womenContainer) el.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+                if (el !== glassBgWomen) el.style.display = 'none';
             });
+            glassBgWomen.style.display = 'block';
             womenContainer.classList.add('centered-modal');
             womenContainer.style.display = 'flex';
         });
     }
-    if (womenCloseBtn && womenContainer) {
+    if (womenCloseBtn && womenContainer && glassBgWomen) {
         womenCloseBtn.addEventListener('click', function() {
             womenContainer.classList.remove('centered-modal');
             womenContainer.style.display = 'none';
-            document.querySelectorAll('section, header, footer').forEach(el => {
+            glassBgWomen.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
                 el.style.display = '';
             });
         });
