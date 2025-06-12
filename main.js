@@ -374,21 +374,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const kidsCheckBtn = document.getElementById('kidsCheckPackageBtn');
     const kidsContainer = document.getElementById('custom-package-kids');
     const kidsCloseBtn = document.getElementById('kidsModalCloseBtn');
-    if (kidsCheckBtn && kidsContainer) {
+    const glassBgKids = document.getElementById('glassBgKids');
+    if (kidsCheckBtn && kidsContainer && glassBgKids) {
         kidsCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                if (el !== kidsContainer) el.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+                if (el !== glassBgKids) el.style.display = 'none';
             });
+            glassBgKids.style.display = 'block';
             kidsContainer.classList.add('centered-modal');
             kidsContainer.style.display = 'flex';
         });
     }
-    if (kidsCloseBtn && kidsContainer) {
+    if (kidsCloseBtn && kidsContainer && glassBgKids) {
         kidsCloseBtn.addEventListener('click', function() {
             kidsContainer.classList.remove('centered-modal');
             kidsContainer.style.display = 'none';
-            document.querySelectorAll('section, header, footer').forEach(el => {
+            glassBgKids.style.display = 'none';
+            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
                 el.style.display = '';
             });
         });
