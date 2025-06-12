@@ -290,18 +290,16 @@ header {
 }
 .package-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.3s;
-    position: relative;
+    transition: transform 0.3s ease;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 .package-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
 }
 .package-badge {
     position: absolute;
@@ -316,29 +314,24 @@ header {
     z-index: 1;
 }
 .package-img {
-    height: 220px;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
 }
 .package-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
-}
-.package-card:hover .package-img img {
-    transform: scale(1.05);
 }
 .package-card a{
     text-decoration: none;
     color: var(--light);
 }
 .package-info {
-    padding: 25px;
+    padding: 15px;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 .package-info h3 {
     font-size: 1.5rem;
@@ -373,15 +366,12 @@ header {
     font-weight: 500;
 }
 .package-price {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
+    margin-bottom: 8px;
 }
 .current-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-right: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--dark);
 }
 .old-price {
     font-size: 1.2rem;
@@ -452,13 +442,9 @@ header {
     color: var(--dark);
 }
 .product-category {
-    color: var(--primary);
-    font-size: 0.8rem;
-    margin-bottom: 10px;
-    display: block;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.1em;
+    color: #4a5568;
+    margin-bottom: 8px;
 }
 .product-price {
     display: flex;
@@ -473,12 +459,9 @@ header {
     font-size: 1rem;
 }
 .product-actions {
-    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     gap: 10px;
-    margin: 1rem auto 0.5rem;
+    margin-top: auto;
 }
 .add-to-cart {
     background: var(--primary);
@@ -494,31 +477,32 @@ header {
     text-align: center;
 }
 .check-package {
-    background: var(--dark);
+    flex: 1;
+    padding: 8px 15px;
+    background: #e83e8c;
     color: white;
     border: none;
-    padding: 12px 15px;
-    border-radius: 5px;
-    font-weight: 600;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s;
-    flex: 1 1 50%;
-    min-width: 0;
-    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.check-package:hover {
+    background: #d6336c;
 }
 
 .wishlist {
-    width: 40px;
-    height: 40px;
-    background: var(--light-gray);
-    border: none;
-    border-radius: 5px;
+    padding: 8px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.wishlist:hover {
+    background: #edf2f7;
+    color: #e83e8c;
 }
 /* Checkout Button */
 .checkout-section {
