@@ -298,25 +298,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const menContainer = document.getElementById('custom-package-men');
     const menCloseBtn = document.getElementById('menModalCloseBtn');
     const glassBgMen = document.getElementById('glassBgMen');
+
     if (menCheckBtn && menContainer && glassBgMen) {
         menCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+            // Hide all other glass backgrounds and containers
+            document.querySelectorAll('.glass-bg').forEach(el => {
                 if (el !== glassBgMen) el.style.display = 'none';
             });
+            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
+                if (el !== menContainer) el.style.display = 'none';
+            });
+            // Show only men's container
             glassBgMen.style.display = 'block';
             menContainer.classList.add('centered-modal');
             menContainer.style.display = 'flex';
         });
     }
+
     if (menCloseBtn && menContainer && glassBgMen) {
         menCloseBtn.addEventListener('click', function() {
             menContainer.classList.remove('centered-modal');
             menContainer.style.display = 'none';
             glassBgMen.style.display = 'none';
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
-                el.style.display = '';
-            });
         });
     }
 
@@ -325,25 +329,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const womenContainer = document.getElementById('custom-package-women');
     const womenCloseBtn = document.getElementById('womenModalCloseBtn');
     const glassBgWomen = document.getElementById('glassBgWomen');
+
     if (womenCheckBtn && womenContainer && glassBgWomen) {
         womenCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+            // Hide all other glass backgrounds and containers
+            document.querySelectorAll('.glass-bg').forEach(el => {
                 if (el !== glassBgWomen) el.style.display = 'none';
             });
+            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
+                if (el !== womenContainer) el.style.display = 'none';
+            });
+            // Show only women's container
             glassBgWomen.style.display = 'block';
             womenContainer.classList.add('centered-modal');
             womenContainer.style.display = 'flex';
         });
     }
+
     if (womenCloseBtn && womenContainer && glassBgWomen) {
         womenCloseBtn.addEventListener('click', function() {
             womenContainer.classList.remove('centered-modal');
             womenContainer.style.display = 'none';
             glassBgWomen.style.display = 'none';
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
-                el.style.display = '';
-            });
         });
     }
 
@@ -352,25 +360,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const kidsContainer = document.getElementById('custom-package-kids');
     const kidsCloseBtn = document.getElementById('kidsModalCloseBtn');
     const glassBgKids = document.getElementById('glassBgKids');
+
     if (kidsCheckBtn && kidsContainer && glassBgKids) {
         kidsCheckBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
+            // Hide all other glass backgrounds and containers
+            document.querySelectorAll('.glass-bg').forEach(el => {
                 if (el !== glassBgKids) el.style.display = 'none';
             });
+            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
+                if (el !== kidsContainer) el.style.display = 'none';
+            });
+            // Show only kids' container
             glassBgKids.style.display = 'block';
             kidsContainer.classList.add('centered-modal');
             kidsContainer.style.display = 'flex';
         });
     }
+
     if (kidsCloseBtn && kidsContainer && glassBgKids) {
         kidsCloseBtn.addEventListener('click', function() {
             kidsContainer.classList.remove('centered-modal');
             kidsContainer.style.display = 'none';
             glassBgKids.style.display = 'none';
-            document.querySelectorAll('section, header, footer, .glass-bg').forEach(el => {
-                el.style.display = '';
-            });
         });
     }
 });
