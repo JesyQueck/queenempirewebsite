@@ -17,10 +17,10 @@
                     <i class="fas fa-crown"></i> Queens Empire
                 </a>
                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#packages">Packages</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#packages">Packages</a></li>
+                    <li><a href="index.html#packages">Products</a></li>
+                    <li><a href="#footer">About</a></li>
                 </ul>
                          <button class="menu" aria-label="Open Menu">
   <i class="fas fa-bars"></i>
@@ -32,7 +32,7 @@
                   <i class="fas fa-times"></i>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#">About</a></li>
@@ -68,112 +68,117 @@
             <span class="modal-close" id="paymentClose">&times;</span>
             <h2 class="modal-title">Complete Your Purchase</h2>
             
-            <!-- Delivery Address -->
-            <div class="address-section">
-                <h3 class="section-heading">
-                    <i class="fas fa-truck"></i> Delivery Information
-                </h3>
-                <form class="address-form" id="addressForm">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="address">Street Address</label>
-                        <input type="text" id="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="region">Region/State</label>
-                        <input type="text" id="region" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="postalCode">Postal Code</label>
-                        <input type="text" id="postalCode" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="country">Country</label>
-                        <select id="country" required>
-                            <option value="">Select Country</option>
-                            <option value="Ghana">Ghana</option>
-                            <option value="Nigeria">Nigeria</option>
-                            <option value="South Africa">South Africa</option>
-                            <option value="Kenya">Kenya</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="deliveryNotes">Delivery Instructions (Optional)</label>
-                        <textarea id="deliveryNotes" placeholder="Any special instructions for delivery?"></textarea>
-                    </div>
-                    <div class="form-group full-width save-address">
-                        <input type="checkbox" id="saveAddress">
-                        <label for="saveAddress">Save this address for future orders</label>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- Payment Method -->
-            <div class="payment-methods">
-                <h3 class="section-heading">
-                    <i class="fas fa-credit-card"></i> Payment Method
-                </h3>
-                <div class="payment-method" id="bankTransfer">
-                    <input type="radio" name="paymentMethod" id="bankTransferRadio" checked>
-                    <i class="fas fa-university"></i>
-                    <div class="payment-method-details">
-                        <label for="bankTransferRadio">Bank Transfer</label>
-                        <p>Transfer directly to our bank account</p>
-                    </div>
-                </div>
-                
-                <div class="payment-method" id="mobileMoney">
-                    <input type="radio" name="paymentMethod" id="mobileMoneyRadio">
-                    <i class="fas fa-mobile-alt"></i>
-                    <div class="payment-method-details">
-                        <label for="mobileMoneyRadio">Mobile Money</label>
-                        <p>Pay with your mobile money account</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bank Details -->
-            <div class="bank-details active" id="bankDetails">
-                <p>Please transfer the exact amount to the following account:</p>
-                <div class="account-number">1234567890 (Queens Empire Ltd.)</div>
-                <p><strong>Bank:</strong> Royal Fashion Bank</p>
-                <p><strong>Branch:</strong> Main Branch</p>
-                <p>After payment, please upload your proof of payment below.</p>
-            </div>
-            
-            <!-- Mobile Money Details -->
-            <div class="bank-details" id="mobileMoneyDetails">
-                <p>Please send the exact amount to the following number:</p>
-                <div class="account-number">0244123456 (Queens Empire Ltd.)</div>
-                <p><strong>Network:</strong> All Networks</p>
-                <p>After payment, please upload your proof of payment below.</p>
-            </div>
-            
             <!-- Payment Confirmation -->
             <div class="payment-confirm">
-                <label for="paymentProof">Upload Proof of Payment</label>
-                <input type="file" id="paymentProof" required>
-                
-                <label for="transactionId">Transaction ID/Reference</label>
-                <input type="text" id="transactionId" required>
-                
-                <button type="button" class="submit-payment" id="submitPayment">Complete Order</button>
+                <form id="checkoutForm" action="https://formbold.com/s/9ErjK" method="POST" enctype="multipart/form-data">
+                    <!-- Delivery Address (Moved inside Formspree form) -->
+                    <div class="address-section">
+                        <h3 class="section-heading">
+                            <i class="fas fa-truck"></i> Delivery Information
+                        </h3>
+                        <!-- The actual input fields will be moved here -->
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Region/State</label>
+                            <input type="text" id="region" name="region" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <input type="text" id="postalCode" name="postalCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="deliveryNotes">Delivery Instructions (Optional)</label>
+                            <textarea id="deliveryNotes" name="deliveryNotes" placeholder="Any special instructions for delivery?"></textarea>
+                        </div>
+                        <div class="form-group full-width save-address">
+                            <input type="checkbox" id="saveAddress" name="saveAddress">
+                            <label for="saveAddress">Save this address for future orders</label>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method (Already mostly within the form area, but confirm inputs have 'name') -->
+                    <div class="payment-methods">
+                        <h3 class="section-heading">
+                            <i class="fas fa-credit-card"></i> Payment Method
+                        </h3>
+                        <div class="payment-method" id="bankTransfer">
+                            <input type="radio" name="paymentMethod" id="bankTransferRadio" value="Bank Transfer" checked>
+                            <i class="fas fa-university"></i>
+                            <div class="payment-method-details">
+                                <label for="bankTransferRadio">Bank Transfer</label>
+                                <p>Transfer directly to our bank account</p>
+                            </div>
+                        </div>
+                        <div class="payment-method" id="mobileMoney">
+                            <input type="radio" name="paymentMethod" id="mobileMoneyRadio" value="Mobile Money">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="payment-method-details">
+                                <label for="mobileMoneyRadio">Mobile Money</label>
+                                <p>Pay with your mobile money account</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bank Details (Already present, no change needed as they are display only) -->
+                    <div class="bank-details active" id="bankDetails">
+                        <p>Please transfer the exact amount to the following account:</p>
+                        <div class="account-number">1234567890 (Queens Empire Ltd.)</div>
+                        <p><strong>Bank:</strong> Royal Fashion Bank</p>
+                        <p><strong>Branch:</strong> Main Branch</p>
+                        <p>After payment, please upload your proof of payment below.</p>
+                    </div>
+                    <!-- Mobile Money Details (Already present, no change needed as they are display only) -->
+                    <div class="bank-details" id="mobileMoneyDetails">
+                        <p>Please send the exact amount to the following number:</p>
+                        <div class="account-number">0244123456 (Queens Empire Ltd.)</div>
+                        <p><strong>Network:</strong> All Networks</p>
+                        <p>After payment, please upload your proof of payment below.</p>
+                    </div>
+
+                    <!-- Payment Confirmation (Revert to optional file upload) -->
+                    <div class="form-group full-width">
+                        <label for="paymentProof">Upload Proof of Payment (Optional)</label>
+                        <input type="file" id="paymentProof" name="paymentProof">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="transactionId">Transaction ID/Reference</label>
+                        <input type="text" id="transactionId" name="transactionId" required>
+                    </div>
+
+                    <!-- Original submit button, now inside the form -->
+                    <button type="submit" class="submit-payment" id="submitPayment">Complete Order</button>
+                </form>
             </div>
         </div>
     </div>
@@ -290,12 +295,6 @@
         </div>
     </div>
 </footer>
-
-<!-- Success Notification -->
-<div class="notification" id="successNotification">
-    <i class="fas fa-check-circle"></i>
-    <span>Payment confirmed! Your order is being processed.</span>
-</div>
 
     <script src="main.js"></script>
 </body>

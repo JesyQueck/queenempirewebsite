@@ -34,6 +34,7 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
             const card = button.closest('.product-card, .package-card, .custom-package-card');
             let name = 'Product';
             let price = 0;
+            let image = ''; // Initialize image variable
 
             // Try to get name and price from data attributes first
             if (card) {
@@ -47,10 +48,15 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
                 if (!price && card.querySelector('.current-price')) {
                     price = parseFloat(card.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
                 }
+                // Get image source
+                const imgElement = card.querySelector('.product-img img, .package-img img, .custom-slider-img.custom-active');
+                if (imgElement) {
+                    image = imgElement.src;
+                }
             }
 
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name, price });
+            cart.push({ name, price, image }); // Push image along with name and price
             localStorage.setItem('cart', JSON.stringify(cart));
 
             // Animate button, update cart count, etc.
@@ -106,37 +112,6 @@ if (mobileMoney) {
         document.getElementById('mobileMoneyRadio').checked = true;
         mobileMoneyDetails.classList.add('active');
         bankDetails.classList.remove('active');
-    });
-}
-
-// Submit payment
-if (submitPayment) {
-    submitPayment.addEventListener('click', () => {
-        // Validate address form
-        if (!addressForm.checkValidity()) {
-            alert('Please fill in all required fields');
-            return;
-        }
-        // Validate payment proof
-        if (!document.getElementById('paymentProof').value || 
-            !document.getElementById('transactionId').value) {
-            alert('Please upload payment proof and enter transaction ID');
-            return;
-        }
-        // Process payment (in a real app, this would be sent to a server)
-        paymentModal.classList.remove('active');
-        
-        // Show success notification
-        successNotification.classList.add('active');
-        
-        // Reset cart
-        localStorage.removeItem('cart');
-        updateCart();
-        
-        // Hide notification after 5 seconds
-        setTimeout(() => {
-            successNotification.classList.remove('active');
-        }, 5000);
     });
 }
 
@@ -433,3 +408,91 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Formbold submission for checkoutForm
+const checkoutForm = document.getElementById('checkoutForm');
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        console.log('Form submission initiated...');
+
+        // 1. Gather cart items for summary
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+
+        let orderSummaryHtml = `<h3>Cart Items:</h3><ul style="list-style:none;padding:0;">`;
+        if (cart.length === 0) {
+            orderSummaryHtml += `<li>No items in cart.</li>`;
+        } else {
+            cart.forEach(item => {
+                orderSummaryHtml += `<li style="margin-bottom: 5px; display: flex; align-items: center;">`;
+                if (item.image) {
+                    orderSummaryHtml += `<img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 4px;">`;
+                }
+                orderSummaryHtml += `<span>${item.name} - ₦${item.price?.toFixed(2) || '0.00'}</span></li>`;
+            });
+        }
+        orderSummaryHtml += `</ul><p><strong>Total:</strong> ₦${total.toFixed(2)}</p>`;
+
+        // 2. Create FormData object from the form
+        const formData = new FormData(this);
+
+        // Log all FormData entries for debugging
+        for (let pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]);
+        }
+
+        // 3. Append the dynamically generated order summary HTML for Formbold
+        formData.append('orderSummaryHtmlContent', orderSummaryHtml);
+
+        console.log('Sending data to Formbold...');
+
+        // 4. Send data to Formbold using fetch
+        try {
+            const response = await fetch(this.action, {
+                method: this.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' // Still good practice to request JSON response
+                }
+            });
+
+            console.log('Formbold response received:', response);
+
+            if (response.ok) {
+                console.log('Form submission successful!');
+                // Success: close modal, show notification, clear cart
+                paymentModal.classList.remove('active');
+                successNotification.classList.add('active');
+                localStorage.removeItem('cart');
+                updateCart(); // This updates the cart count in header/cart page
+
+                // Only call renderCart if on cart.html to update the table display
+                if (document.getElementById('cartItems')) {
+                    renderCart();
+                }
+
+                // Reset the form fields
+                this.reset();
+
+                setTimeout(() => {
+                    successNotification.classList.remove('active');
+                }, 5000);
+            } else {
+                console.error('Form submission failed with status:', response.status);
+                // Error: read response and show alert
+                const data = await response.json();
+                if (data.errors) {
+                    alert('Form submission failed: ' + data.errors.map(err => err.message).join(', '));
+                    console.error('Formbold errors:', data.errors);
+                } else {
+                    alert('Form submission failed! Please try again.');
+                }
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('An error occurred during submission. Please check your internet connection and try again.');
+        }
+    });
+}
