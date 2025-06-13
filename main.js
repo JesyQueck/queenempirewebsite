@@ -508,3 +508,33 @@ if (checkoutForm) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const customPacks = document.querySelectorAll('.custom-pack');
+    customPacks.forEach(pack => {
+        const nextBtn = pack.querySelector('.custom-card-nav.custom-next');
+        const prevBtn = pack.querySelector('.custom-card-nav.custom-prev');
+        const cards = pack.querySelectorAll('.custom-package-card');
+        let currentIndex = 0;
+
+        function showCard(index) {
+            cards.forEach((card, idx) => {
+                card.classList.toggle('active', idx === index);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                showCard(currentIndex);
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                showCard(currentIndex);
+            });
+        }
+    });
+});
