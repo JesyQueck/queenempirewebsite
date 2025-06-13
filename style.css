@@ -996,153 +996,122 @@ header {
     color: #c2185b;
 }
 .custom-package-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(44,62,80,0.08);
-    padding: 24px;
-    width: 350px;
-    max-width: 100%;
-    min-width: 280px;
-    position: relative;
     display: none;
-    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
 }
 .custom-package-card.active {
-    display: flex !important;
+    display: block;
 }
 .custom-slider-wrapper {
     position: relative;
     width: 100%;
-    height: 220px;
-    margin-bottom: 18px;
-    overflow: hidden;
-    border-radius: 8px;
-    background: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 15px;
+    max-height: 400px;
 }
 .custom-slider-images {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding: 1rem 0;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    overflow: hidden;
+    position: relative;
+    max-height: 400px;
 }
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.custom-slider-images::-webkit-scrollbar {
-    display: none;
-}
-
-.custom-slider-images::-webkit-scrollbar-track {
-    background: #f8f9fa;
-    border-radius: 4px;
-}
-
-.custom-slider-images::-webkit-scrollbar-thumb {
-    background: #e83e8c;
-    border-radius: 4px;
-}
-
-.custom-slider-images::-webkit-scrollbar-thumb:hover {
-    background: #c2185b;
-}
-
 .custom-slider-img {
     width: 100%;
-    height: 220px;
-    display: none;
+    height: 400px;
     object-fit: cover;
-    position: absolute;
-    left: 0; top: 0;
-    opacity: 0;
-    transition: opacity 0.4s;
-    border-radius: 8px;
-    z-index: 1;
+    display: none;
 }
 .custom-slider-img.custom-active {
-    opacity: 1;
-    position: relative;
-    z-index: 2;
     display: block;
 }
 .custom-slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(44,62,80,0.7);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
     border: none;
-    font-size: 1.5rem;
-    padding: 6px 14px;
-    border-radius: 50%;
+    padding: 10px 15px;
     cursor: pointer;
-    z-index: 3;
-    transition: background 0.2s;
+    border-radius: 50%;
+    z-index: 2;
 }
-.custom-slider-btn.custom-prev { left: 10px; }
-.custom-slider-btn.custom-next { right: 10px; }
-.custom-slider-btn:hover { background: #e83e8c; }
-.custom-package-info h3 {
-    margin-top: 0;
-    color: #2d3748;
+.custom-slider-btn.custom-prev {
+    left: 10px;
 }
-.custom-package-info p {
-    margin: 8px 0;
-    color: #444;
-    font-size: 1rem;
+.custom-slider-btn.custom-next {
+    right: 10px;
 }
-.color-badge {
-    display: inline-block;
-    min-width: 36px;
-    padding: 4px 12px;
-    margin-right: 6px;
-    margin-top: 6px;
-    width: 5px;
-    height: 5px;
-    color: #fff;
-    border-radius: 20rem;
-    text-align: center;
-    font-weight: 600;
-    vertical-align: middle;
-    box-shadow: 0 1px 4px rgba(44,62,80,0.08);
+.custom-package-info {
+    padding: 10px;
 }
-.custom-pack {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
+.custom-card-actions {
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    gap: 8px;
+    margin-top: 10px;
 }
-.color-gray {
-    background: #6c757d;
+.add-to-cart {
+    padding: 8px 16px;
+    background: #e83e8c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.add-to-cart:hover {
+    background: #d6336c;
+}
+/* Glass Background */
+.glass-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/* Modal Close Button */
+.men-modal-close,
+.women-modal-close,
+.kids-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #e83e8c;
+    border: none;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    line-height: 1;
 }
 
-.color-green {
-    background: #38a169;
+.men-modal-close:hover,
+.women-modal-close:hover,
+.kids-modal-close:hover {
+    background: #d6336c;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-.color-blue {
-    background: #3182ce;
-}
-.color-black {
-    background: #000000;
-}
-.color-coral-pink {
-    background: #f88379;
-}
-.color-navy {
-    background: #000080;
-}
-.color-navy {
-    background: #000080;
-}
-
 /* Responsive */
 @media (max-width: 992px) {
     .hero h1 {
@@ -1292,7 +1261,7 @@ header {
 }
 
 .centered-modal .Men-container,
-.centered-modal .Women-container, 
+.centered-modal .Women-container,
 .centered-modal .Kids-container {
     background: #fff;
     border-radius: 16px;
@@ -1301,6 +1270,11 @@ header {
     width: 100%;
     box-shadow: 0 8px 32px rgba(44,62,80,0.18);
     margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 #glassBgWomen {
@@ -1344,7 +1318,7 @@ header {
     border-radius: 50%;
     width: 38px;
     height: 38px;
-    font-size: 2rem;
+    font-size: 5rem;
     z-index: 10001;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(44,62,80,0.08);
@@ -1495,7 +1469,7 @@ header {
     overflow-y: auto;
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
-    display: none;
+    /* display: none; This was causing issues in conjunction with JS display control */
 }
 
 .Men-container::-webkit-scrollbar,
@@ -1511,6 +1485,7 @@ header {
     flex-direction: column;
 }
 
+/* Glassmorphism background wrapper for Men-container */
 .glass-bg {
     position: fixed;
     top: 0;
@@ -1564,6 +1539,10 @@ header {
     gap: 0;
 }
 
+.custom-package-card.active {
+    display: flex !important; /* Ensure active card is displayed */
+}
+
 .custom-slider-wrapper {
     width: 100%;
     position: relative;
@@ -1599,10 +1578,22 @@ header {
     margin-top: 1rem;
 }
 
-/* Navigation buttons */
+/* Consolidated and Corrected Navigation Styles */
+.custom-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px; /* Reduced padding for smaller screens */
+    z-index: 10;
+    pointer-events: none; /* Allow clicks to pass through to buttons */
+}
+
 .custom-card-nav {
-    position: relative;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9); /* Lighter background for buttons */
     border: none;
     width: 40px;
     height: 40px;
@@ -1612,11 +1603,18 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: #333;
+    color: #333; /* Darker text for better contrast */
     z-index: 2;
-    margin: 0;
+    pointer-events: auto; /* Re-enable pointer events for buttons */
+    transition: background 0.2s, color 0.2s; /* Smooth transition */
 }
 
+.custom-card-nav:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Specific positioning for prev/next buttons within custom-navigation */
 .custom-card-nav.custom-prev {
     margin-right: 0;
 }
@@ -1625,11 +1623,44 @@ header {
     margin-left: 0;
 }
 
-.custom-navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 0;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
+/* Responsive adjustments for custom package elements */
+@media (max-width: 768px) {
+    .custom-package-card {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .custom-navigation {
+        padding: 0 5px; /* Adjust padding for very small screens */
+    }
+
+    .custom-card-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .men-modal-close,
+    .women-modal-close,
+    .kids-modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .custom-pack {
+        padding: 0.5rem;
+    }
+
+    .custom-package-card {
+        padding: 16px 8px;
+    }
+
+    .custom-navigation {
+        padding: 0;
+    }
 }

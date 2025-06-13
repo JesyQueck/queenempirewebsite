@@ -208,185 +208,127 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cartItemsTbody && cartTotalDiv && checkoutBtn) {
         renderCart();
     }
-});
 
-// Show Men-container as modal when "Check package" under Men's Package is clicked
-document.addEventListener('DOMContentLoaded', function() {
-    const menCheckBtn = document.getElementById('menCheckPackageBtn');
-    const menContainer = document.getElementById('custom-package-men');
-    const body = document.body;
+    // Package Modal Logic (Men, Women, Kids)
+    const packageButtons = [
+        { btnId: 'menCheckPackageBtn', containerId: 'custom-package-men', modalId: 'glassBgMen', closeBtnId: 'menModalCloseBtn' },
+        { btnId: 'womenCheckPackageBtn', containerId: 'custom-package-women', modalId: 'glassBgWomen', closeBtnId: 'womenModalCloseBtn' },
+        { btnId: 'kidsCheckPackageBtn', containerId: 'custom-package-kids', modalId: 'glassBgKids', closeBtnId: 'kidsModalCloseBtn' },
+    ];
 
-    if (menCheckBtn && menContainer) {
-        menCheckBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Hide all main content except menContainer
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                if (el !== menContainer) el.style.display = 'none';
+    packageButtons.forEach(packageInfo => {
+        const checkBtn = document.getElementById(packageInfo.btnId);
+        const container = document.getElementById(packageInfo.containerId);
+        const closeBtn = document.getElementById(packageInfo.closeBtnId);
+        const glassBg = document.getElementById(packageInfo.modalId);
+
+        if (checkBtn && container && glassBg) {
+            checkBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Hide all other glass backgrounds and containers
+                document.querySelectorAll('.glass-bg').forEach(el => {
+                    if (el !== glassBg) el.style.display = 'none';
+                });
+                document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
+                    if (el !== container) el.style.display = 'none';
+                });
+                // Show only the current package's container and glass background
+                glassBg.style.display = 'block';
+                container.classList.add('centered-modal');
+                container.style.display = 'flex';
+                initCustomPackageSlider(packageInfo.containerId, packageInfo.modalId); // Initialize slider for this package
             });
-            // Center and show menContainer
-            menContainer.classList.add('centered-modal');
-            menContainer.style.display = 'flex';
-        });
-    }
+        }
 
-    // Optional: Click outside to close or add a close button inside menContainer
-    menContainer.addEventListener('click', function(e) {
-        if (e.target === menContainer) {
-            menContainer.classList.remove('centered-modal');
-            menContainer.style.display = 'none'; // <-- Add this line
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                el.style.display = '';
+        if (closeBtn && container && glassBg) {
+            closeBtn.addEventListener('click', function() {
+                container.classList.remove('centered-modal');
+                container.style.display = 'none';
+                glassBg.style.display = 'none';
+            });
+        }
+
+        // Close modal when clicking outside of the package container
+        if (glassBg && container) {
+            window.addEventListener('click', (e) => {
+                if (e.target === glassBg) {
+                    container.classList.remove('centered-modal');
+                    container.style.display = 'none';
+                    glassBg.style.display = 'none';
+                }
             });
         }
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const menCloseBtn = document.getElementById('menModalCloseBtn');
-    const menContainer = document.getElementById('custom-package-men');
-    if (menCloseBtn && menContainer) {
-        menCloseBtn.addEventListener('click', function() {
-            menContainer.classList.remove('centered-modal');
-            menContainer.style.display = 'none'; // <-- This hides the modal and the close button
-            document.querySelectorAll('section, header, footer').forEach(el => {
-                el.style.display = '';
+// Custom Package Slider Control - REFACTORED to be generic
+function initCustomPackageSlider(containerId, modalId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.custom-package-card');
+    const nextBtn = container.querySelector('.custom-navigation .custom-card-nav.custom-next');
+    const prevBtn = container.querySelector('.custom-navigation .custom-card-nav.custom-prev');
+    const modal = document.getElementById(modalId);
+    
+    // Find the initially active card or default to first card
+    let currentIndex = Array.from(cards).findIndex(card => card.classList.contains('active'));
+    if (currentIndex === -1) currentIndex = 0;
+
+    function updateSlider() {
+        // Remove active class from all cards and hide them
+        cards.forEach(card => {
+            card.classList.remove('active');
+        });
+        
+        // Add active class and show current card
+        if (cards[currentIndex]) {
+            cards[currentIndex].classList.add('active');
+        }
+    }
+
+    function showNextCard() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateSlider();
+    }
+
+    function showPrevCard() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateSlider();
+    }
+
+    // Add click event listeners to navigation buttons
+    if (nextBtn) {
+        nextBtn.addEventListener('click', showNextCard);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', showPrevCard);
+    }
+
+    // Initialize the slider when the modal is shown
+    if (modal) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'style') {
+                    const isVisible = modal.style.display !== 'none';
+                    if (isVisible) {
+                        // Always reset to the first card when modal opens
+                        currentIndex = 0;
+                        updateSlider();
+                    }
+                }
             });
         });
-    }
-});
 
-// --- KEEP THIS BLOCK: Card slider logic ---
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('#customPack .custom-package-card');
-    let current = 0;
-
-    function showCard(idx) {
-        cards.forEach((card, i) => {
-            card.classList.toggle('active', i === idx);
+        observer.observe(modal, {
+            attributes: true,
+            attributeFilter: ['style']
         });
+    } else {
+        // If no modal is associated, initialize immediately
+        updateSlider();
     }
-
-    if (cards.length) {
-        showCard(current);
-
-        cards.forEach((card, idx) => {
-            const prevBtn = card.querySelector('.custom-card-nav.custom-prev');
-            const nextBtn = card.querySelector('.custom-card-nav.custom-next');
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    current = (current - 1 + cards.length) % cards.length;
-                    showCard(current);
-                });
-            }
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    current = (current + 1) % cards.length;
-                    showCard(current);
-                });
-            }
-        });
-    }
-});
-// --- END CARD SLIDER LOGIC ---
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Men
-    const menCheckBtn = document.getElementById('menCheckPackageBtn');
-    const menContainer = document.getElementById('custom-package-men');
-    const menCloseBtn = document.getElementById('menModalCloseBtn');
-    const glassBgMen = document.getElementById('glassBgMen');
-
-    if (menCheckBtn && menContainer && glassBgMen) {
-        menCheckBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Hide all other glass backgrounds and containers
-            document.querySelectorAll('.glass-bg').forEach(el => {
-                if (el !== glassBgMen) el.style.display = 'none';
-            });
-            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
-                if (el !== menContainer) el.style.display = 'none';
-            });
-            // Show only men's container
-            glassBgMen.style.display = 'block';
-            menContainer.classList.add('centered-modal');
-            menContainer.style.display = 'flex';
-        });
-    }
-
-    if (menCloseBtn && menContainer && glassBgMen) {
-        menCloseBtn.addEventListener('click', function() {
-            menContainer.classList.remove('centered-modal');
-            menContainer.style.display = 'none';
-            glassBgMen.style.display = 'none';
-        });
-    }
-
-    // Women
-    const womenCheckBtn = document.getElementById('womenCheckPackageBtn');
-    const womenContainer = document.getElementById('custom-package-women');
-    const womenCloseBtn = document.getElementById('womenModalCloseBtn');
-    const glassBgWomen = document.getElementById('glassBgWomen');
-
-    if (womenCheckBtn && womenContainer && glassBgWomen) {
-        womenCheckBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Hide all other glass backgrounds and containers
-            document.querySelectorAll('.glass-bg').forEach(el => {
-                if (el !== glassBgWomen) el.style.display = 'none';
-            });
-            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
-                if (el !== womenContainer) el.style.display = 'none';
-            });
-            // Show only women's container
-            glassBgWomen.style.display = 'block';
-            womenContainer.classList.add('centered-modal');
-            womenContainer.style.display = 'flex';
-        });
-    }
-
-    if (womenCloseBtn && womenContainer && glassBgWomen) {
-        womenCloseBtn.addEventListener('click', function() {
-            womenContainer.classList.remove('centered-modal');
-            womenContainer.style.display = 'none';
-            glassBgWomen.style.display = 'none';
-        });
-    }
-
-    // Kids
-    const kidsCheckBtn = document.getElementById('kidsCheckPackageBtn');
-    const kidsContainer = document.getElementById('custom-package-kids');
-    const kidsCloseBtn = document.getElementById('kidsModalCloseBtn');
-    const glassBgKids = document.getElementById('glassBgKids');
-
-    if (kidsCheckBtn && kidsContainer && glassBgKids) {
-        kidsCheckBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Hide all other glass backgrounds and containers
-            document.querySelectorAll('.glass-bg').forEach(el => {
-                if (el !== glassBgKids) el.style.display = 'none';
-            });
-            document.querySelectorAll('section[id^="custom-package-"]').forEach(el => {
-                if (el !== kidsContainer) el.style.display = 'none';
-            });
-            // Show only kids' container
-            glassBgKids.style.display = 'block';
-            kidsContainer.classList.add('centered-modal');
-            kidsContainer.style.display = 'flex';
-        });
-    }
-
-    if (kidsCloseBtn && kidsContainer && glassBgKids) {
-        kidsCloseBtn.addEventListener('click', function() {
-            kidsContainer.classList.remove('centered-modal');
-            kidsContainer.style.display = 'none';
-            glassBgKids.style.display = 'none';
-        });
-    }
-});
-
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const customSliderWrappers = document.querySelectorAll('.custom-slider-wrapper');
@@ -498,7 +440,8 @@ if (checkoutForm) {
                 if (data.errors) {
                     alert('Form submission failed: ' + data.errors.map(err => err.message).join(', '));
                     console.error('Formbold errors:', data.errors);
-                } else {
+                }
+                else {
                     alert('Form submission failed! Please try again.');
                 }
             }
@@ -509,32 +452,86 @@ if (checkoutForm) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const customPacks = document.querySelectorAll('.custom-pack');
-    customPacks.forEach(pack => {
-        const nextBtn = pack.querySelector('.custom-card-nav.custom-next');
-        const prevBtn = pack.querySelector('.custom-card-nav.custom-prev');
-        const cards = pack.querySelectorAll('.custom-package-card');
-        let currentIndex = 0;
+// Function to handle package card navigation
+function setupPackageNavigation(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-        function showCard(index) {
-            cards.forEach((card, idx) => {
-                card.classList.toggle('active', idx === index);
-            });
-        }
+    const cards = container.querySelectorAll('.custom-package-card');
+    const prevBtn = container.querySelector('.custom-prev');
+    const nextBtn = container.querySelector('.custom-next');
+    let currentIndex = 0;
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % cards.length;
-                showCard(currentIndex);
-            });
-        }
+    // Function to show a specific card
+    function showCard(index) {
+        cards.forEach(card => {
+            card.classList.remove('active');
+            card.style.display = 'none';
+        });
+        cards[index].classList.add('active');
+        cards[index].style.display = 'block';
+    }
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-                showCard(currentIndex);
-            });
+    // Initialize first card
+    showCard(currentIndex);
+
+    // Previous button click handler
+    prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        showCard(currentIndex);
+    });
+
+    // Next button click handler
+    nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        showCard(currentIndex);
+    });
+}
+
+// Function to show only active card in custom package
+function showOnlyActiveCard(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const cards = container.querySelectorAll('.custom-package-card');
+    cards.forEach(card => {
+        if (!card.classList.contains('active')) {
+            card.style.display = 'none';
+        } else {
+            card.style.display = 'block';
         }
     });
+}
+
+// Add event listeners for check package buttons
+document.getElementById('menCheckPackageBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgMen').style.display = 'block';
+    showOnlyActiveCard('customPackMen');
+    setupPackageNavigation('customPackMen');
 });
+
+document.getElementById('womenCheckPackageBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgWomen').style.display = 'block';
+    showOnlyActiveCard('customPackWomen');
+    setupPackageNavigation('customPackWomen');
+});
+
+document.getElementById('kidsCheckPackageBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgKids').style.display = 'block';
+    showOnlyActiveCard('customPackKids');
+    setupPackageNavigation('customPackKids');
+});
+
+// Add event listeners for modal close buttons
+document.getElementById('menModalCloseBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgMen').style.display = 'none';
+});
+
+document.getElementById('womenModalCloseBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgWomen').style.display = 'none';
+});
+
+document.getElementById('kidsModalCloseBtn')?.addEventListener('click', () => {
+    document.getElementById('glassBgKids').style.display = 'none';
+});
+
