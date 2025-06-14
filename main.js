@@ -378,7 +378,7 @@ if (checkoutForm) {
         const encodedMessage = encodeURIComponent(whatsappMessage);
         
         // 4. Create WhatsApp URL (replace with your business WhatsApp number)
-        const whatsappNumber = '23451492218'; // Replace with your WhatsApp number
+        const whatsappNumber = '23451890111; // Replace with your WhatsApp number
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
         // 5. Open WhatsApp in new tab
