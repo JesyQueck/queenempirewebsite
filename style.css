@@ -311,7 +311,7 @@ header {
     right: 15px;
     background: var(--primary);
     color: white;
-    padding: 5px 15px;
+    padding: 2px 15px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
@@ -389,6 +389,32 @@ header {
     font-size: 1.2rem;
     color: var(--gray);
     text-decoration: line-through;
+}
+.add-to-cart:hover {
+    background: var(--primary-dark);
+}
+
+/* Styling for 'Select Category' button (a.add-to-cart inside .package-info) */
+.package-info button.add-to-cart {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.package-info button.add-to-cart:hover {
+    background: var(--primary-dark);
 }
 /* Products Section */
 .products {

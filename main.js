@@ -689,11 +689,11 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 });
 
 // Category Selection Functionality
-document.querySelectorAll('.add-to-cart[href*="Product.html"]').forEach(button => {
+document.querySelectorAll('.add-to-cart[data-href*="Product.html"]').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        const category = this.closest('.package-card').querySelector('.package-name').textContent;
-        const url = this.getAttribute('href');
+        const category = this.closest('.package-card').querySelector('h3').textContent;
+        const url = this.getAttribute('data-href');
         
         // Store the selected category
         localStorage.setItem('selectedCategory', category);
