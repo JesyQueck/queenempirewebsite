@@ -354,10 +354,14 @@ if (checkoutForm) {
         // Add customer details
         const formData = new FormData(this);
         whatsappMessage += `*Customer Information:*\n`;
-        whatsappMessage += `Name: ${formData.get('name')}\n`;
-        whatsappMessage += `Email: ${formData.get('email')}\n`;
-        whatsappMessage += `Phone: ${formData.get('phone')}\n`;
-        whatsappMessage += `Address: ${formData.get('address')}\n\n`;
+        whatsappMessage += `Name: ${formData.get('First Name') || ''} ${formData.get('Last Name') || ''}\n`;
+        whatsappMessage += `Email: ${formData.get('email') || 'Not provided'}\n`;
+        whatsappMessage += `Phone: ${formData.get('Phone Number') || 'Not provided'}\n`;
+        whatsappMessage += `Address: ${formData.get('Street Address') || 'Not provided'}\n`;
+        whatsappMessage += `City: ${formData.get('City') || 'Not provided'}\n`;
+        whatsappMessage += `Region: ${formData.get('Region/State') || 'Not provided'}\n`;
+        whatsappMessage += `Postal Code: ${formData.get('Postal Code') || 'Not provided'}\n`;
+        whatsappMessage += `Country: ${formData.get('Country') || 'Not provided'}\n\n`;
 
         // Add order items
         whatsappMessage += `*Order Items:*\n`;
@@ -365,14 +369,35 @@ if (checkoutForm) {
             whatsappMessage += `No items in cart.\n`;
         } else {
             cart.forEach(item => {
-                whatsappMessage += `- ${item.name} - ₦${item.price?.toFixed(2) || '0.00'}\n`;
+                whatsappMessage += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
+                if (item.image) {
+                    whatsappMessage += `  Image: ${item.image}\n`;
+                }
             });
         }
         whatsappMessage += `\n*Total Amount:* ₦${total.toFixed(2)}\n\n`;
 
-        // Add payment method
-        const paymentMethod = formData.get('paymentMethod');
+        // Add payment method and proof
+        const paymentMethod = formData.get('Payment Method') || 'Not specified';
         whatsappMessage += `*Payment Method:* ${paymentMethod}\n`;
+        
+        // Add payment proof if uploaded
+        const paymentProof = formData.get('Proof of Payment');
+        if (paymentProof && paymentProof.name) {
+            whatsappMessage += `*Payment Proof:* ${paymentProof.name}\n`;
+        }
+
+        // Add transaction ID
+        const transactionId = formData.get('Transaction ID/Reference');
+        if (transactionId) {
+            whatsappMessage += `*Transaction ID:* ${transactionId}\n`;
+        }
+
+        // Add delivery notes if any
+        const deliveryNotes = formData.get('Delivery Instructions');
+        if (deliveryNotes) {
+            whatsappMessage += `\n*Delivery Instructions:*\n${deliveryNotes}\n`;
+        }
 
         // 3. Encode the message for WhatsApp URL
         const encodedMessage = encodeURIComponent(whatsappMessage);
