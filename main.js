@@ -348,80 +348,59 @@ if (checkoutForm) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         let total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
 
-        let orderSummaryHtml = `<h3>Cart Items:</h3><ul style="list-style:none;padding:0;">`;
+        // 2. Create WhatsApp message
+        let whatsappMessage = `*New Order Details*\n\n`;
+        
+        // Add customer details
+        const formData = new FormData(this);
+        whatsappMessage += `*Customer Information:*\n`;
+        whatsappMessage += `Name: ${formData.get('name')}\n`;
+        whatsappMessage += `Email: ${formData.get('email')}\n`;
+        whatsappMessage += `Phone: ${formData.get('phone')}\n`;
+        whatsappMessage += `Address: ${formData.get('address')}\n\n`;
+
+        // Add order items
+        whatsappMessage += `*Order Items:*\n`;
         if (cart.length === 0) {
-            orderSummaryHtml += `<li>No items in cart.</li>`;
+            whatsappMessage += `No items in cart.\n`;
         } else {
             cart.forEach(item => {
-                orderSummaryHtml += `<li style="margin-bottom: 5px; display: flex; align-items: center;">`;
-                if (item.image) {
-                    orderSummaryHtml += `<img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 4px;">`;
-                }
-                orderSummaryHtml += `<span>${item.name} - ₦${item.price?.toFixed(2) || '0.00'}</span></li>`;
+                whatsappMessage += `- ${item.name} - ₦${item.price?.toFixed(2) || '0.00'}\n`;
             });
         }
-        orderSummaryHtml += `</ul><p><strong>Total:</strong> ₦${total.toFixed(2)}</p>`;
+        whatsappMessage += `\n*Total Amount:* ₦${total.toFixed(2)}\n\n`;
 
-        // 2. Create FormData object from the form
-        const formData = new FormData(this);
+        // Add payment method
+        const paymentMethod = formData.get('paymentMethod');
+        whatsappMessage += `*Payment Method:* ${paymentMethod}\n`;
 
-        // Log all FormData entries for debugging
-        for (let pair of formData.entries()) {
-            console.log(pair[0]+ ': ' + pair[1]);
+        // 3. Encode the message for WhatsApp URL
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        
+        // 4. Create WhatsApp URL (replace with your business WhatsApp number)
+        const whatsappNumber = '234XXXXXXXXX'; // Replace with your WhatsApp number
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        // 5. Open WhatsApp in new tab
+        window.open(whatsappUrl, '_blank');
+
+        // 6. Clear cart and show success message
+        paymentModal.classList.remove('active');
+        successNotification.classList.add('active');
+        localStorage.removeItem('cart');
+        updateCart();
+
+        // Only call renderCart if on cart.html to update the table display
+        if (document.getElementById('cartItems')) {
+            renderCart();
         }
 
-        // 3. Append the dynamically generated order summary HTML for Formbold
-        formData.append('orderSummaryHtmlContent', orderSummaryHtml);
+        // Reset the form fields
+        this.reset();
 
-        console.log('Sending data to Formbold...');
-
-        // 4. Send data to Formbold using fetch
-        try {
-            const response = await fetch(this.action, {
-                method: this.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Still good practice to request JSON response
-                }
-            });
-
-            console.log('Formbold response received:', response);
-
-            if (response.ok) {
-                console.log('Form submission successful!');
-                // Success: close modal, show notification, clear cart
-                paymentModal.classList.remove('active');
-                successNotification.classList.add('active');
-                localStorage.removeItem('cart');
-                updateCart(); // This updates the cart count in header/cart page
-
-                // Only call renderCart if on cart.html to update the table display
-                if (document.getElementById('cartItems')) {
-                    renderCart();
-                }
-
-                // Reset the form fields
-                this.reset();
-
-                setTimeout(() => {
-                    successNotification.classList.remove('active');
-                }, 5000);
-            } else {
-                console.error('Form submission failed with status:', response.status);
-                // Error: read response and show alert
-                const data = await response.json();
-                if (data.errors) {
-                    alert('Form submission failed: ' + data.errors.map(err => err.message).join(', '));
-                    console.error('Formbold errors:', data.errors);
-                }
-                else {
-                    alert('Form submission failed! Please try again.');
-                }
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('An error occurred during submission. Please check your internet connection and try again.');
-        }
+        setTimeout(() => {
+            successNotification.classList.remove('active');
+        }, 5000);
     });
 }
 
