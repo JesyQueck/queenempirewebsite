@@ -6,7 +6,6 @@ const checkoutBtn = document.getElementById('checkoutBtn');
 const checkoutCount = document.getElementById('checkoutCount');
 const paymentModal = document.getElementById('paymentModal');
 const paymentClose = document.getElementById('paymentClose');
-const addressForm = document.getElementById('addressForm');
 const submitPayment = document.getElementById('submitPayment');
 const successNotification = document.getElementById('successNotification');
 const bankTransfer = document.getElementById('bankTransfer');
