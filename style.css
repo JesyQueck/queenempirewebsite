@@ -1095,8 +1095,8 @@ header {
 .women-modal-close,
 .kids-modal-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 70px;
+    right: 10px;
     background: #e83e8c;
     border: none;
     color: white;
@@ -1107,9 +1107,7 @@ header {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     line-height: 1;
