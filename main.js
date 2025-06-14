@@ -378,11 +378,11 @@ if (checkoutForm) {
         const encodedMessage = encodeURIComponent(whatsappMessage);
         
         // 4. Create WhatsApp URL (replace with your business WhatsApp number)
-        const whatsappNumber = '23451890111; // Replace with your WhatsApp number
+        const whatsappNumber = '23451890111'; // Replace with your WhatsApp number
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
         // 5. Open WhatsApp in new tab
-        window.open(whatsappUrl, '_blank');
+        window.location.href = whatsappUrl;
 
         // 6. Clear cart and show success message
         paymentModal.classList.remove('active');
