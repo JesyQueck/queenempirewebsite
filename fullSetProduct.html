@@ -22,23 +22,25 @@
                     <li><a href="products.html">Products</a></li>
                     <li><a href="#About">About</a></li>
                 </ul>
-                <a href="cart.html" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-                <button class="menu" aria-label="Open Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <button class="menu" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
             <div class="header-top sidebar">
                 <button type="button" class="sidebar-cancel" aria-label="Close Sidebar">
                     <i class="fas fa-times"></i>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#footer">About</a></li>
                 </ul>
             </div>
         </div>
@@ -73,8 +75,7 @@
                         <strong>Colors:</strong> Gray, Green, Blue, Black, Navy, Coral Pink
                     </div>
                     <div class="product-actions">
-                        <button class="check-package" id="menCheckPackageBtn">Check package</button>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -95,8 +96,7 @@
                         <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
                     </div>
                     <div class="product-actions">
-                        <button class="check-package" id="womenCheckPackageBtn">Check package</button>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -117,8 +117,7 @@
                         <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
                     </div>
                     <div class="product-actions">
-                        <button class="check-package" id="kidsCheckPackageBtn">Check package</button>
-                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -128,7 +127,7 @@
     <!-- Men Custom Package Section -->
     <div class="glass-bg" style="display:none;" id="glassBgMen">
       <section id="custom-package-men" class="Men-container">
-        <button class="men-modal-close" id="menModalCloseBtn" aria-label="Close">&times;</button>
+        <button class="men-modal-close" id="menModalCloseBtn" aria-label="Close"><i class="fas fa-times" style="color: #ffffff !important;"></i></button>
         <div class="custom-pack" id="customPackMen">
           <div class="custom-navigation">
             <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
@@ -307,7 +306,7 @@
     <!-- Women Custom Package Section -->
     <div class="glass-bg" style="display:none;" id="glassBgWomen">
       <section id="custom-package-women" class="Women-container">
-        <button class="women-modal-close" id="womenModalCloseBtn" aria-label="Close">&times;</button>
+        <button class="women-modal-close" id="womenModalCloseBtn" aria-label="Close"><i class="fas fa-times" style="color: #ffffff !important;"></i></button>
         <div class="custom-pack" id="customPackWomen">
           <div class="custom-navigation">
             <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>
@@ -725,7 +724,7 @@
     <!-- Kids Custom Package Section -->
     <div class="glass-bg" style="display:none;" id="glassBgKids">
       <section id="custom-package-kids" class="Kids-container">
-        <button class="kids-modal-close" id="kidsModalCloseBtn" aria-label="Close">&times;</button>
+        <button class="kids-modal-close" id="kidsModalCloseBtn" aria-label="Close"><i class="fas fa-times" style="color: #ffffff !important;"></i></button>
         <div class="custom-pack" id="customPackKids">
           <div class="custom-navigation">
             <button class="custom-card-nav custom-prev" aria-label="Previous">&larr;</button>

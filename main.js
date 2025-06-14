@@ -29,48 +29,22 @@ function updateCart() {
 
 // Add to cart functionality (does NOT open checkout modal)
 document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-        if (button.textContent.trim() === 'Add to Cart') {
-            const card = button.closest('.product-card, .package-card, .custom-package-card');
-            let name = 'Product';
-            let price = 0;
-            let image = ''; // Initialize image variable
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = this.closest('.product-card, .package-card');
+        if (!card) return;
 
-            // Try to get name and price from data attributes first
-            if (card) {
-                name = card.getAttribute('data-name') || name;
-                price = parseFloat(card.getAttribute('data-price')) || price;
+        const productData = {
+            id: card.dataset.id || Date.now().toString(),
+            name: card.querySelector('.product-name, h3')?.textContent || 'Product',
+            price: card.querySelector('.product-price, .current-price')?.textContent || '0',
+            image: card.querySelector('.product-img img, .package-img img')?.src || '',
+            category: card.querySelector('.product-category')?.textContent || 'Category'
+        };
 
-                // Fallback to h3 and .current-price if not present
-                if (!name && card.querySelector('h3')) {
-                    name = card.querySelector('h3').textContent;
-                }
-                if (!price && card.querySelector('.current-price')) {
-                    price = parseFloat(card.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
-                }
-                // Get image source
-                const imgElement = card.querySelector('.product-img img, .package-img img, .custom-slider-img.custom-active');
-                if (imgElement) {
-                    image = imgElement.src;
-                }
-            }
-
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name, price, image }); // Push image along with name and price
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Animate button, update cart count, etc.
-            button.textContent = 'Added!';
-            button.style.backgroundColor = 'var(--success)';
-            setTimeout(() => {
-                button.textContent = 'Add to Cart';
-                button.style.backgroundColor = 'var(--primary)';
-            }, 1000);
-
-            updateCart();
-        }
+        addToCart(productData);
     });
-})
+});
 
 // Custom package button
 if (customPackageBtn) {
@@ -533,5 +507,185 @@ document.getElementById('womenModalCloseBtn')?.addEventListener('click', () => {
 
 document.getElementById('kidsModalCloseBtn')?.addEventListener('click', () => {
     document.getElementById('glassBgKids').style.display = 'none';
+});
+
+// Add to wishlist functionality
+document.querySelectorAll('.wishlist').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = this.closest('.product-card, .package-card');
+        if (!card) return;
+
+        const productData = {
+            id: card.dataset.id || Date.now().toString(),
+            name: card.querySelector('.product-name, h3')?.textContent || 'Product',
+            price: card.querySelector('.product-price, .current-price')?.textContent || '0',
+            image: card.querySelector('.product-img img, .package-img img')?.src || '',
+            category: card.querySelector('.product-category')?.textContent || 'Category'
+        };
+
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const existingIndex = wishlist.findIndex(item => item.id === productData.id);
+
+        const icon = this.querySelector('i');
+        
+        if (existingIndex === -1) {
+            // Add to wishlist
+            wishlist.push(productData);
+            this.classList.add('active');
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            icon.style.color = '#e83e8c';
+        } else {
+            // Remove from wishlist
+            wishlist.splice(existingIndex, 1);
+            this.classList.remove('active');
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            icon.style.color = '';
+        }
+
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateCart();
+        renderWishlist();
+
+        // If we're on the wishlist page, remove the item from the DOM
+        if (window.location.pathname.includes('wishlist.html')) {
+            const wishlistItem = document.querySelector(`.wishlist-item[data-id="${productData.id}"]`);
+            if (wishlistItem) {
+                wishlistItem.remove();
+                // If no items left, show empty message
+                if (wishlist.length === 0) {
+                    const wishlistContainer = document.querySelector('.wishlist-items');
+                    if (wishlistContainer) {
+                        wishlistContainer.innerHTML = '<p class="empty-wishlist">Your wishlist is empty</p>';
+                    }
+                }
+            }
+        }
+    });
+});
+
+// Check for existing wishlist items on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    document.querySelectorAll('.wishlist').forEach(button => {
+        const card = button.closest('.product-card, .package-card');
+        if (!card) return;
+        
+        const cardId = card.dataset.id || card.querySelector('.product-name, h3')?.textContent;
+        if (wishlist.some(item => item.id === cardId)) {
+            button.classList.add('active');
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            icon.style.color = '#e83e8c';
+        }
+    });
+});
+
+// Render wishlist items
+function renderWishlist() {
+    const wishlistContainer = document.querySelector('.wishlist-items');
+    if (!wishlistContainer) return;
+
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = '<p class="empty-wishlist">Your wishlist is empty</p>';
+        return;
+    }
+
+    wishlistContainer.innerHTML = wishlist.map(item => `
+        <div class="wishlist-item" data-id="${item.id}">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="wishlist-item-info">
+                <h3>${item.name}</h3>
+                <div class="price">${item.price}</div>
+                <div class="category">${item.category}</div>
+                <div class="wishlist-item-actions">
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="remove">Remove</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Add event listeners for the new buttons
+    wishlistContainer.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const item = this.closest('.wishlist-item');
+            const productData = {
+                id: item.dataset.id,
+                name: item.querySelector('h3').textContent,
+                price: item.querySelector('.price').textContent,
+                image: item.querySelector('img').src,
+                category: item.querySelector('.category').textContent
+            };
+            addToCart(productData);
+        });
+    });
+
+    wishlistContainer.querySelectorAll('.remove').forEach(button => {
+        button.addEventListener('click', function() {
+            const item = this.closest('.wishlist-item');
+            const itemId = item.dataset.id;
+            
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(product => product.id !== itemId);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Update the heart icon in the main product cards
+            document.querySelectorAll('.wishlist').forEach(wishlistBtn => {
+                const card = wishlistBtn.closest('.product-card, .package-card');
+                if (card && card.dataset.id === itemId) {
+                    wishlistBtn.classList.remove('active');
+                    const icon = wishlistBtn.querySelector('i');
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+                    icon.style.color = '';
+                }
+            });
+            
+            renderWishlist();
+        });
+    });
+}
+
+// Handler for add-to-cart buttons, to be reusable
+function addToCartHandler(event) {
+    if (this.textContent.trim() === 'Add to Cart') {
+        const card = this.closest('.product-card, .package-card, .custom-package-card');
+        let name = 'Product';
+        let price = 0;
+        let image = '';
+
+        if (card) {
+            name = this.getAttribute('data-name') || (card.querySelector('h3') ? card.querySelector('h3').textContent : (card.querySelector('.product-category') ? card.querySelector('.product-category').textContent : 'Product'));
+            price = parseFloat(this.getAttribute('data-price')) || (card.querySelector('.current-price') ? parseFloat(card.querySelector('.current-price').textContent.replace(/[^0-9.]/g, '')) : 0);
+            
+            const imgElement = this.getAttribute('data-image') ? null : card.querySelector('.product-img img, .package-img img, .custom-slider-img.custom-active');
+            image = this.getAttribute('data-image') || (imgElement ? imgElement.src : '');
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name, price, image });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        this.textContent = 'Added!';
+        this.style.backgroundColor = 'var(--success)';
+        setTimeout(() => {
+            this.textContent = 'Add to Cart';
+            this.style.backgroundColor = 'var(--primary)';
+        }, 1000);
+
+        updateCart();
+    }
+}
+
+// Remove the old add-to-cart event listener if it was directly applied globally
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.removeEventListener('click', () => { /* old anonymous function */ });
+    button.addEventListener('click', addToCartHandler); // Re-apply with named handler
 });
 
