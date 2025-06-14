@@ -689,3 +689,28 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', addToCartHandler); // Re-apply with named handler
 });
 
+// Category Selection Functionality
+document.querySelectorAll('.add-to-cart[href*="Product.html"]').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const category = this.closest('.package-card').querySelector('.package-name').textContent;
+        const url = this.getAttribute('href');
+        
+        // Store the selected category
+        localStorage.setItem('selectedCategory', category);
+        
+        // Navigate to the selected page
+        window.location.href = url;
+    });
+});
+
+// Display selected category on the product pages
+document.addEventListener('DOMContentLoaded', function() {
+    const selectedCategory = localStorage.getItem('selectedCategory');
+    const previewCategory = document.getElementById('previewCategory');
+    
+    if (previewCategory && selectedCategory) {
+        previewCategory.textContent = `Selected Category: ${selectedCategory}`;
+    }
+});
+
