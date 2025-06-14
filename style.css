@@ -501,19 +501,6 @@ header {
 .check-package:hover {
     background: #edf2f7;
 }
-.wishlist {
-    width: 40px;
-    height: 40px;
-    background: var(--light-gray);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
 /* Checkout Button */
 .checkout-section {
     position: fixed;
@@ -659,6 +646,7 @@ header {
 .save-address {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: 5px;
 }
 .save-address input {
