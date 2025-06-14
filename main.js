@@ -354,14 +354,13 @@ if (checkoutForm) {
         // Add customer details
         const formData = new FormData(this);
         whatsappMessage += `*Customer Information:*\n`;
-        whatsappMessage += `Name: ${formData.get('First Name') || ''} ${formData.get('Last Name') || ''}\n`;
-        whatsappMessage += `Email: ${formData.get('email') || 'Not provided'}\n`;
-        whatsappMessage += `Phone: ${formData.get('Phone Number') || 'Not provided'}\n`;
-        whatsappMessage += `Address: ${formData.get('Street Address') || 'Not provided'}\n`;
-        whatsappMessage += `City: ${formData.get('City') || 'Not provided'}\n`;
-        whatsappMessage += `Region: ${formData.get('Region/State') || 'Not provided'}\n`;
-        whatsappMessage += `Postal Code: ${formData.get('Postal Code') || 'Not provided'}\n`;
-        whatsappMessage += `Country: ${formData.get('Country') || 'Not provided'}\n\n`;
+        whatsappMessage += `Name: ${formData.get('firstName') || ''} ${formData.get('lastName') || ''}\n`;
+        whatsappMessage += `Phone: ${formData.get('phone') || 'Not provided'}\n`;
+        whatsappMessage += `Address: ${formData.get('address') || 'Not provided'}\n`;
+        whatsappMessage += `City: ${formData.get('city') || 'Not provided'}\n`;
+        whatsappMessage += `Region: ${formData.get('region') || 'Not provided'}\n`;
+        whatsappMessage += `Postal Code: ${formData.get('postalCode') || 'Not provided'}\n`;
+        whatsappMessage += `Country: ${formData.get('country') || 'Not provided'}\n\n`;
 
         // Add order items
         whatsappMessage += `*Order Items:*\n`;
@@ -378,23 +377,23 @@ if (checkoutForm) {
         whatsappMessage += `\n*Total Amount:* ₦${total.toFixed(2)}\n\n`;
 
         // Add payment method and proof
-        const paymentMethod = formData.get('Payment Method') || 'Not specified';
+        const paymentMethod = formData.get('paymentMethod') || 'Not specified';
         whatsappMessage += `*Payment Method:* ${paymentMethod}\n`;
         
         // Add payment proof if uploaded
-        const paymentProof = formData.get('Proof of Payment');
+        const paymentProof = formData.get('paymentProof');
         if (paymentProof && paymentProof.name) {
             whatsappMessage += `*Payment Proof:* ${paymentProof.name}\n`;
         }
 
         // Add transaction ID
-        const transactionId = formData.get('Transaction ID/Reference');
+        const transactionId = formData.get('transactionId');
         if (transactionId) {
             whatsappMessage += `*Transaction ID:* ${transactionId}\n`;
         }
 
         // Add delivery notes if any
-        const deliveryNotes = formData.get('Delivery Instructions');
+        const deliveryNotes = formData.get('deliveryNotes');
         if (deliveryNotes) {
             whatsappMessage += `\n*Delivery Instructions:*\n${deliveryNotes}\n`;
         }
@@ -403,8 +402,10 @@ if (checkoutForm) {
         const encodedMessage = encodeURIComponent(whatsappMessage);
         
         // 4. Create WhatsApp URL (replace with your business WhatsApp number)
-        const whatsappNumber = '23431348334'; // Replace with your WhatsApp number
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        const whatsappNumber = '2347051890111'; // Your WhatsApp number
+        // Remove any spaces, dashes, or other characters from the number
+        const cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
+        const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
 
         // 5. Open WhatsApp in new tab
         window.location.href = whatsappUrl;
