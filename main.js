@@ -50,8 +50,8 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 
         const productData = {
             id: card.dataset.id || Date.now().toString(),
-            name: card.querySelector('.product-name, h3, .package-info strong')?.textContent || 'Product',
-            price: card.querySelector('.product-price, .current-price')?.textContent || '0',
+            name: card.dataset.name || 'Product',
+            price: parseFloat(card.dataset.price) || 0,
             images: images,
             category: card.querySelector('.product-category')?.textContent || 'Category'
         };
