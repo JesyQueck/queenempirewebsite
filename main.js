@@ -26,38 +26,49 @@ function updateCart() {
     }
 }
 
-// Add to cart functionality (does NOT open checkout modal)
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function(e) {
+// Add to cart function
+function addToCart(product) {
+    if (!product.name || !product.price) return; // Don't add invalid products
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+// Event delegation for add to cart buttons
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('add-to-cart')) {
         e.preventDefault();
-        const card = this.closest('.product-card, .package-card, .custom-package-card');
+        const card = e.target.closest('.product-card, .package-card, .custom-package-card'); // Check all card types
         if (!card) return;
 
-        // Get all images from the product card
+        // Get images: Prioritize slider images for custom cards, then regular images
         let images = [];
-        
-        // Check for regular product/package images
-        const regularImages = card.querySelectorAll('.product-img img, .package-img img');
-        if (regularImages.length > 0) {
-            images = Array.from(regularImages).map(img => img.src);
-        }
-        
-        // Check for custom package slider images
         const sliderImages = card.querySelectorAll('.custom-slider-images img');
+        const regularImages = card.querySelectorAll('.product-img img, .package-img img');
+        
         if (sliderImages.length > 0) {
             images = Array.from(sliderImages).map(img => img.src);
+        } else if (regularImages.length > 0) {
+            images = Array.from(regularImages).map(img => img.src);
         }
 
-        const productData = {
-            id: card.dataset.id || Date.now().toString(),
-            name: card.dataset.name || 'Product',
-            price: parseFloat(card.dataset.price) || 0,
-            images: images,
-            category: card.querySelector('.product-category')?.textContent || 'Category'
-        };
+        // Use data-name and data-price if available, otherwise fall back to text content
+        const productName = card.dataset.name || card.querySelector('.product-name, h3, .package-info strong')?.textContent || 'Product';
+        const productPrice = parseFloat(card.dataset.price) || parseFloat(card.querySelector('.product-price, .current-price')?.textContent.replace(/[^\d.]/g, '')) || 0;
 
-        addToCart(productData);
-    });
+        if (productName && productPrice > 0) { // Ensure both name and a valid price exist
+            const productData = {
+                id: card.dataset.id || Date.now().toString(), // Keep existing ID if available
+                name: productName,
+                price: productPrice,
+                images: images,
+                category: card.querySelector('.product-category')?.textContent || 'Category' // Keep category if needed
+            };
+            addToCart(productData);
+        }
+    }
 });
 
 // Custom package button
@@ -676,43 +687,6 @@ function renderWishlist() {
         });
     });
 }
-
-// Handler for add-to-cart buttons, to be reusable
-function addToCartHandler(event) {
-    if (this.textContent.trim() === 'Add to Cart') {
-        const card = this.closest('.product-card, .package-card, .custom-package-card');
-        let name = 'Product';
-        let price = 0;
-        let image = '';
-
-        if (card) {
-            name = this.getAttribute('data-name') || (card.querySelector('h3') ? card.querySelector('h3').textContent : (card.querySelector('.product-category') ? card.querySelector('.product-category').textContent : 'Product'));
-            price = parseFloat(this.getAttribute('data-price')) || (card.querySelector('.current-price') ? parseFloat(card.querySelector('.current-price').textContent.replace(/[^0-9.]/g, '')) : 0);
-            
-            const imgElement = this.getAttribute('data-image') ? null : card.querySelector('.product-img img, .package-img img, .custom-slider-img.custom-active');
-            image = this.getAttribute('data-image') || (imgElement ? imgElement.src : '');
-        }
-
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name, price, image });
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        this.textContent = 'Added!';
-        this.style.backgroundColor = 'var(--success)';
-        setTimeout(() => {
-            this.textContent = 'Add to Cart';
-            this.style.backgroundColor = 'var(--primary)';
-        }, 1000);
-
-        updateCart();
-    }
-}
-
-// Remove the old add-to-cart event listener if it was directly applied globally
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.removeEventListener('click', () => { /* old anonymous function */ });
-    button.addEventListener('click', addToCartHandler); // Re-apply with named handler
-});
 
 // Category Selection Functionality
 document.querySelectorAll('.add-to-cart[data-href*="Product.html"]').forEach(button => {
