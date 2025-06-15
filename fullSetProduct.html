@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -47,85 +64,86 @@
         </div>
     </header>
 
-    <!-- Products Section -->
-    <section id="products" class="container">
-        <div class="section-title">
-            <h2>Full Set Package</h2>
-            <p>High-quality underwear, vests, and camisoles for all ages</p>
-        </div>
-        <div class="package-products">
-            <!-- Men -->
-            <!-- <div class="package-card">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Package">
-                </div>
-                <div class="package-info">
-                    <span class="product-category">Men's Package</span>
-                    <div class="package-price">
-                        <span class="current-price">$12.00</span>
+    <main>
+        <!-- Products Section -->
+        <section id="products" class="container">
+            <div class="section-title">
+                <h2>Full Set Package</h2>
+                <p>High-quality underwear, vests, and camisoles for all ages</p>
+            </div>
+            <div class="package-products">
+                <!-- Men -->
+                <!-- <div class="package-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Package">
                     </div>
-                    <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px; margin-bottom: 15px;">
-                        <strong>Spec:</strong> 3 items bags<br>
-                        <strong>Package Contents:</strong><br>
-                        - Original HELLO single pic pack from the company<br>
-                        - Original single pack seamless condom<br>
-                        - 99V cotton boxer<br>
-                        - Original 2-1 M&S singlets<br>
-                        <strong>Fabric:</strong> High stretch, Light stretch, Medium stretch<br>
-                        <strong>Features:</strong> Sewn to fit, Tag free, Breathable, Long lasting<br>
-                        <strong>Colors:</strong> Gray, Green, Blue, Black, Navy, Coral Pink
+                    <div class="package-info">
+                        <span class="product-category">Men's Package</span>
+                        <div class="package-price">
+                            <span class="current-price">$12.00</span>
+                        </div>
+                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px; margin-bottom: 15px;">
+                            <strong>Spec:</strong> 3 items bags<br>
+                            <strong>Package Contents:</strong><br>
+                            - Original HELLO single pic pack from the company<br>
+                            - Original single pack seamless condom<br>
+                            - 99V cotton boxer<br>
+                            - Original 2-1 M&S singlets<br>
+                            <strong>Fabric:</strong> High stretch, Light stretch, Medium stretch<br>
+                            <strong>Features:</strong> Sewn to fit, Tag free, Breathable, Long lasting<br>
+                            <strong>Colors:</strong> Gray, Green, Blue, Black, Navy, Coral Pink
+                        </div>
+                        <div class="product-actions">
+                            <button class="check-package" id="menCheckPackageBtn">Check package</button>
+                        </div>
                     </div>
-                    <div class="product-actions">
-                        <button class="check-package" id="menCheckPackageBtn">Check package</button>
+                </div> -->
+                <!-- Women -->
+                <!-- <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Full Pant">
                     </div>
-                </div>
-            </div> -->
-            <!-- Women -->
-            <!-- <div class="package-card">
-                <div class="package-img">
-                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Full Pant">
-                </div>
-                <div class="package-info">
-                    <span class="product-category">Women's Package</span>
-                    <div class="package-price">
-                        <span class="current-price">$8.99</span>
+                    <div class="package-info">
+                        <span class="product-category">Women's Package</span>
+                        <div class="package-price">
+                            <span class="current-price">$8.99</span>
+                        </div>
+                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
+                            <strong>Spec:</strong> 6–9 item bags<br>
+                            <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
+                            <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
+                            <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
+                        </div>
+                        <div class="product-actions">
+                            <button class="check-package" id="womenCheckPackageBtn">Check package</button>
+                        </div>
                     </div>
-                    <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
-                        <strong>Spec:</strong> 6–9 item bags<br>
-                        <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
-                        <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
-                        <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
+                </div> -->
+                <!-- Kids -->
+               <!--  <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cotton Pant">
                     </div>
-                    <div class="product-actions">
-                        <button class="check-package" id="womenCheckPackageBtn">Check package</button>
+                    <div class="package-info">
+                        <span class="product-category">Kid's package</span>
+                        <div class="package-price">
+                            <span class="current-price">$10.99</span>
+                        </div>
+                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
+                            <strong>Spec:</strong> 6–9 item bags<br>
+                            <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
+                            <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
+                            <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
+                        </div>
+                        <div class="product-actions">
+                            <button class="check-package" id="kidsCheckPackageBtn">Check package</button>
+                        </div>
                     </div>
-                </div>
-            </div> -->
-            <!-- Kids -->
-           <!--  <div class="package-card">
-                <div class="package-img">
-                    <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cotton Pant">
-                </div>
-                <div class="package-info">
-                    <span class="product-category">Kid's package</span>
-                    <div class="package-price">
-                        <span class="current-price">$10.99</span>
-                    </div>
-                    <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
-                        <strong>Spec:</strong> 6–9 item bags<br>
-                        <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
-                        <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
-                        <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
-                    </div>
-                    <div class="product-actions">
-                        <button class="check-package" id="kidsCheckPackageBtn">Check package</button>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </section>
+                </div> -->
+            </div>
+        </section>
 
-    <!-- Men Custom Package Section -->
+        <!-- Men Custom Package Section -->
         <div class="men-custom">
           <div class="custom-package-card" data-name="Item P201" data-price="12000">
             <div class="custom-slider-wrapper">
@@ -371,7 +389,7 @@
           </div>
         </div> 
 
-    <!-- Women Custom Package Section -->
+        <!-- Women Custom Package Section -->
         <div class="women-custom">
           <div class="custom-package-card" data-name="Item P301" data-price="12000">
             <div class="custom-slider-wrapper">
@@ -412,8 +430,8 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_11.jpg" alt="FSPWOMEN_5" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_12.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_13.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_14.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_15.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_14.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_16.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_17.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_18.jpg" alt="FSPWOMEN_6" class="custom-slider-img">
@@ -422,7 +440,6 @@
             </div>
             <div class="custom-package-info">
               <p><strong>Item P302</strong></p>
-              <p><strong>12 Items Bag</strong></p>
               <p><strong>Size:</strong> Small runs medium</p>
               <p><strong>Stretchy and low waist band</strong></p>
               <div class="custom-card-actions">
@@ -441,7 +458,7 @@
               <div class="custom-slider-images">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_19.jpg" alt="FSPWOMEN_19" class="custom-slider-img custom-active">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_20.jpg" alt="FSPWOMEN_20" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_21.jpg" alt="FSPWOMEN_21lider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_21.jpg" alt="FSPWOMEN_20" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_22.jpg" alt="FSPWOMEN_22" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_23.jpg" alt="FSPWOMEN_23" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_24.jpg" alt="FSPWOMEN_24" class="custom-slider-img">
@@ -471,15 +488,14 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_26.jpg" alt="FSPWOMEN_31" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_27.jpg" alt="FSPWOMEN_32" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_28.jpg" alt="FSPWOMEN_33" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_29.jpg" alt="FSPWOMEN_34" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_29.jpg" alt="FSPWOMEN_33" class="custom-slider-img">
               </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
             <div class="custom-package-info">
               <p><strong>Item P304</strong></p>
-              <p><strong>5 Items Bag</strong></p>
+              <p><strong>9 Items Bag</strong></p>
               <p><strong>Size:</strong> Small runs medium</p>
-              <p><strong>Full stretch and mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -500,13 +516,12 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_33.jpg" alt="FSPWOMEN_33" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_34.jpg" alt="FSPWOMEN_34" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_35.jpg" alt="FSPWOMEN_35" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_36.jpg" alt="FSPWOMEN_36" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_36.jpg" alt="FSPWOMEN_35" class="custom-slider-img">
               </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
             <div class="custom-package-info">
               <p><strong>Item P305</strong></p>
-              <p><strong>7 Items Bag</strong></p>
               <p><strong>Size:</strong> Large runs XL</p>
               <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
@@ -529,13 +544,12 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_40.jpg" alt="FSPWOMEN_33" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_41.jpg" alt="FSPWOMEN_34" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_42.jpg" alt="FSPWOMEN_35" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_43.jpg" alt="FSPWOMEN_36" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_43.jpg" alt="FSPWOMEN_35" class="custom-slider-img">
               </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
             <div class="custom-package-info">
               <p><strong>Item P306</strong></p>
-              <p><strong>7 Items Bag</strong></p>
               <p><strong>Size:</strong> Large runs XL</p>
               <p><strong>Full Stretch and Mid Stretchy</strong></p>
               <div class="custom-card-actions">
@@ -561,7 +575,6 @@
             </div>
             <div class="custom-package-info">
               <p><strong>Item P307</strong></p>
-              <p><strong>4 Items Bag</strong></p>
               <p><strong>Size:</strong> Small runs medium</p>
               <p><strong>Full stretch and mid stretchy</strong></p>
               <div class="custom-card-actions">
@@ -582,13 +595,13 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_49.jpg" alt="FSPWOMEN_49" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_50.jpg" alt="FSPWOMEN_50" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_51.jpg" alt="FSPWOMEN_51" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_52.jpg" alt="FSPWOMEN_52" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_52.jpg" alt="FSPWOMEN_51" class="custom-slider-img">
               </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
             <div class="custom-package-info">
               <p><strong>Item P308</strong></p>
-              <p><strong>Size:</strong>Small Runs Medium</p>
+              <p><strong>Size:</strong> Small runs medium</p>
               <p><strong>Full Stretch and Mid Stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
@@ -615,8 +628,8 @@
             </div>
             <div class="custom-package-info">
               <p><strong>Item P309</strong></p>
-              <p><strong>Size:</strong> Small Runs Medium</p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Size:</strong> Small runs medium</p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -667,8 +680,8 @@
             </div>
             <div class="custom-package-info">
               <p><strong>Item P311</strong></p>
-              <p><strong>Size:</strong> Small Runs Medium</p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Size:</strong> Small runs medium</p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -695,8 +708,8 @@
             </div>
             <div class="custom-package-info">
               <p><strong>Item P312</strong></p>
-              <p><strong>Size:</strong> Small Runs Medium</p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Size:</strong> Small runs medium</p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -723,7 +736,7 @@
               <p><strong>6 Items Bag</strong></p>
               <p><strong>Size:</strong> 12/14</p>
               <p><strong>Medium</strong></p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -738,10 +751,10 @@
             <div class="custom-slider-wrapper">
               <button class="custom-slider-btn custom-prev">&#10094;</button>
               <div class="custom-slider-images">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_76.jpg" alt="FSPWOMEN_80" class="custom-slider-img custom-active">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_77.jpg" alt="FSPWOMEN_81" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_78.jpg" alt="FSPWOMEN_82" class="custom-slider-img">
-                <img src="Asset/FSPWOMEN/FSPWOMEN_79.jpg" alt="FSPWOMEN_83" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_80.jpg" alt="FSPWOMEN_80" class="custom-slider-img custom-active">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_81.jpg" alt="FSPWOMEN_81" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_82.jpg" alt="FSPWOMEN_82" class="custom-slider-img">
+                <img src="Asset/FSPWOMEN/FSPWOMEN_83.jpg" alt="FSPWOMEN_83" class="custom-slider-img">
               </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
@@ -750,7 +763,7 @@
               <p><strong>6 Items Bag</strong></p>
               <p><strong>Size:</strong> 10:12:14</p>
               <p><strong>Medium</strong></p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -774,9 +787,10 @@
             <div class="custom-package-info">
               <p><strong>Item P315</strong></p>
               <p><strong>4 Items Bag</strong></p>
-              <p><strong>Size:</strong> Large Outdoor/Lounge Wear</p>
+              <p><strong>Size:</strong> Large</p>
+              <p><strong>Outdoor/Lounge Wear</strong> </p>
               <p><strong>Fit:</strong> 12:14:16</p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -822,6 +836,7 @@
                 <img src="Asset/FSPWOMEN/FSPWOMEN_91.jpg" alt="FSPWOMEN_84" class="custom-slider-img custom-active">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_92.jpg" alt="FSPWOMEN_85" class="custom-slider-img">
                 <img src="Asset/FSPWOMEN/FSPWOMEN_93.jpg" alt="FSPWOMEN_86" class="custom-slider-img">
+              </div>
               <button class="custom-slider-btn custom-next">&#10095;</button>
             </div>
             <div class="custom-package-info">
@@ -830,7 +845,7 @@
               <p><strong>Outdoor/Lounge Wear</strong></p>
               <p><strong>Size:</strong> Large</p>
               <p><strong>Fit:</strong> 12:14:16</p>
-              <p><strong>Full Stretch and Mid Stretchy</strong></p>
+              <p><strong>Full stretch and Mid stretchy</strong></p>
               <div class="custom-card-actions">
                 <button class="add-to-cart">Add to Cart</button>
                 <a href="cart.html" class="cart-icon">
@@ -842,8 +857,8 @@
           </div>
         </div> 
 
-    <!-- Kids Custom Package Section -->
-        <div class="kids-custom">
+        <!-- Kids Custom Package Section -->
+        <!-- <div class="kids-custom">
           <div class="custom-package-card" data-name="Kid's Large Set" data-price="9000">
             <div class="custom-slider-wrapper">
               <button class="custom-slider-btn custom-prev">&#10094;</button>
@@ -868,8 +883,8 @@
               </div>
             </div>
           </div>
-        </div>
-
+        </div> -->
+    </main>
 
     <!-- Footer -->
     <footer style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
