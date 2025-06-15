@@ -30,14 +30,29 @@ function updateCart() {
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        const card = this.closest('.product-card, .package-card');
+        const card = this.closest('.product-card, .package-card, .custom-package-card');
         if (!card) return;
+
+        // Get all images from the product card
+        let images = [];
+        
+        // Check for regular product/package images
+        const regularImages = card.querySelectorAll('.product-img img, .package-img img');
+        if (regularImages.length > 0) {
+            images = Array.from(regularImages).map(img => img.src);
+        }
+        
+        // Check for custom package slider images
+        const sliderImages = card.querySelectorAll('.custom-slider-images img');
+        if (sliderImages.length > 0) {
+            images = Array.from(sliderImages).map(img => img.src);
+        }
 
         const productData = {
             id: card.dataset.id || Date.now().toString(),
-            name: card.querySelector('.product-name, h3')?.textContent || 'Product',
+            name: card.querySelector('.product-name, h3, .package-info strong')?.textContent || 'Product',
             price: card.querySelector('.product-price, .current-price')?.textContent || '0',
-            image: card.querySelector('.product-img img, .package-img img')?.src || '',
+            images: images,
             category: card.querySelector('.product-category')?.textContent || 'Category'
         };
 
@@ -350,18 +365,18 @@ if (checkoutForm) {
 
     // 2. Get customer info
     const formData = new FormData(this);
-    const firstName = formData.get('firstName') || '';
-    const lastName = formData.get('lastName') || '';
-    const phone = formData.get('phone') || 'Not provided';
-    const address = formData.get('address') || 'Not provided';
-    const city = formData.get('city') || '';
-    const region = formData.get('region') || '';
-    const postalCode = formData.get('postalCode') || '';
-    const country = formData.get('country') || '';
-    const paymentMethod = formData.get('paymentMethod') || 'Not specified';
-    const transactionId = formData.get('transactionId') || '';
-    const deliveryNotes = formData.get('deliveryNotes') || '';
-    const paymentProof = formData.get('paymentProof');
+    const firstName = formData.get('First Name') || '';
+    const lastName = formData.get('Last Name') || '';
+    const phone = formData.get('Phone Number') || 'Not provided';
+    const address = formData.get('Street Address') || 'Not provided';
+    const city = formData.get('City') || '';
+    const region = formData.get('Region/State') || '';
+    const postalCode = formData.get('Postal Code') || '';
+    const country = formData.get('Country') || '';
+    const paymentMethod = formData.get('Payment Method') || 'Not specified';
+    const transactionId = formData.get('Transaction ID/Reference') || '';
+    const deliveryNotes = formData.get('Delivery Instructions') || '';
+    const paymentProof = formData.get('Proof of Payment');
 
     // 3. Build WhatsApp message
     let message = `*🛒 New Order Received!*\n\n`;
@@ -376,8 +391,11 @@ if (checkoutForm) {
     } else {
       cart.forEach(item => {
         message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
-        if (item.image) {
-          message += `  📷 Image: ${item.image}\n`;
+        if (item.images && item.images.length > 0) {
+          message += `  📷 Product Images:\n`;
+          item.images.forEach((image, index) => {
+            message += `    ${index + 1}. ${image}\n`;
+          });
         }
       });
     }
