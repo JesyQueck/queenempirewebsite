@@ -170,12 +170,12 @@
                     <!-- Payment Confirmation (Revert to optional file upload) -->
                     <div class="form-group full-width">
                         <label for="paymentProof">Upload Proof of Payment (Optional)</label>
-                        <input type="file" id="paymentProof" name="Proof of Payment">
+                        <input type="file" id="paymentProof" name="Proof of Payment" required>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="transactionId">Transaction ID/Reference</label>
-                        <input type="text" id="transactionId" name="Transaction ID/Reference" required>
+                        <label for="transactionId">Transaction ID/Reference  (Optional)</label>
+                        <input type="text" id="transactionId" name="Transaction ID/Reference">
                     </div>
 
                     <!-- Original submit button, now inside the form -->
@@ -188,12 +188,12 @@
     <!-- Success Notification -->
     <div class="notification" id="successNotification">
         <i class="fas fa-check-circle"></i>
-        <span>Payment confirmed! Your order is being processed.</span>
+        <span>Payment confirmed! Your order is being processed. Please wait to be redirected!!</span>
     </div>
 
 
  <!-- Footer -->
- <footer style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
+ <footer id="footer" style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
     <div class="container">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
             <!-- About Queens Empire -->
