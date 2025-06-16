@@ -1032,17 +1032,17 @@ header {
     position: relative;
     width: 100%;
     margin-bottom: 15px;
-    max-height: 400px;
+    max-height: 500px;
 }
 .custom-slider-images {
     display: flex;
     overflow: hidden;
     position: relative;
-    max-height: 400px;
+    max-height: 500px;
 }
 .custom-slider-img {
     width: 100%;
-    height: 400px;
+    height: 500px;
     object-fit: cover;
     display: none;
 }
@@ -1538,7 +1538,7 @@ header {
 
 .custom-slider-img {
     width: 100%;
-    height: auto;
+    height: 400px;
     object-fit: contain;
     border-radius: 8px;
     scroll-snap-align: start;
