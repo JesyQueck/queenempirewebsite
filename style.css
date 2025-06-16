@@ -356,7 +356,7 @@ header {
 .package-info p {
     color: var(--gray);
     margin-bottom: 20px;
-    font-size: 0.95rem;
+    font-size: 2rem;
 }
 .package-items {
     margin-bottom: 20px;
