@@ -356,7 +356,7 @@ header {
 .package-info p {
     color: var(--gray);
     margin-bottom: 20px;
-    font-size: 2rem;
+    font-size: 0.95rem;
 }
 .package-items {
     margin-bottom: 20px;
@@ -1720,8 +1720,9 @@ header {
     }
 
     .custom-package-info p {
-        font-size: 14px;
+        font-size: 1rem !important;
         margin-bottom: 8px;
+        font-weight: 700 !important;
     }
 
 }
