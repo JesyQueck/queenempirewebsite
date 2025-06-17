@@ -433,6 +433,12 @@ if (checkoutForm) {
     const whatsappNumber = '2347051890111';
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
+    // Debug information
+    console.log('WhatsApp Number:', whatsappNumber);
+    console.log('Original Message:', message);
+    console.log('Encoded Message:', encodedMessage);
+    console.log('WhatsApp URL:', whatsappURL);
+
     // 👉 Use location.href instead of window.open for better reliability
     window.location.href = whatsappURL;
 
