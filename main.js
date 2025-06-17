@@ -387,86 +387,134 @@ if (checkoutForm) {
     const paymentMethod = formData.get('Payment Method') || 'Not specified';
     const transactionId = formData.get('Transaction ID/Reference') || '';
     const deliveryNotes = formData.get('Delivery Instructions') || '';
-    const paymentProof = formData.get('Proof of Payment');
+    const paymentProof = formData.get('Proof of Payment'); // This is a File object
 
-    // 3. Build WhatsApp message
-    let message = `*🛒 New Order Received!*\n\n`;
-    message += `*Customer Info:*\n`;
-    message += `👤 Name: ${firstName} ${lastName}\n`;
-    message += `📞 Phone: ${phone}\n`;
-    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}\n\n`;
+    // 3. Build WhatsApp message (initially without image URL)
+    let message = `*🛒 New Order Received!*
 
-    message += `*🧾 Order Items:*\n`;
+`;
+    message += `*Customer Info:*
+`;
+    message += `👤 Name: ${firstName} ${lastName}
+`;
+    message += `📞 Phone: ${phone}
+`;
+    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}
+
+`;
+
+    message += `*🧾 Order Items:*
+`;
     if (cart.length === 0) {
-      message += `No items in cart.\n`;
+      message += `No items in cart.
+`;
     } else {
       cart.forEach(item => {
-        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
+        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}
+`;
         if (item.images && item.images.length > 0) {
-          message += `  📷 Product Images:\n`;
+          message += `  📷 Product Images:
+`;
           item.images.forEach((image, index) => {
-            message += `    ${index + 1}. ${image}\n`;
+            message += `    ${index + 1}. ${image}
+`;
           });
         }
       });
     }
 
-    message += `\n💰 *Total:* ₦${total.toFixed(2)}\n`;
-    message += `💳 *Payment Method:* ${paymentMethod}\n`;
-
-    if (paymentProof && paymentProof.name) {
-      message += `📎 *Proof of Payment:* ${paymentProof.name}\n`;
-    }
+    message += `
+💰 *Total:* ₦${total.toFixed(2)}
+`;
+    message += `💳 *Payment Method:* ${paymentMethod}
+`;
 
     if (transactionId) {
-      message += `🧾 *Transaction ID:* ${transactionId}\n`;
+      message += `🧾 *Transaction ID:* ${transactionId}
+`;
     }
 
     if (deliveryNotes) {
-      message += `📝 *Delivery Notes:*\n${deliveryNotes}\n`;
+      message += `📝 *Delivery Notes:*
+${deliveryNotes}
+`;
     }
 
-    // 4. Encode and redirect to WhatsApp
-    const encodedMessage = encodeURIComponent(message);
+    // Handle payment proof upload and then send WhatsApp message
+    if (paymentProof && paymentProof.name) {
+        const uploadFormData = new FormData();
+        uploadFormData.append('paymentProof', paymentProof);
 
-    // ✅ Replace with YOUR WhatsApp number in international format (no + or 0)
-    const whatsappNumber = '2347051890111';
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    // Debug information
-    console.log('WhatsApp Number:', whatsappNumber);
-    console.log('Original Message:', message);
-    console.log('Encoded Message:', encodedMessage);
-    console.log('WhatsApp URL:', whatsappURL);
-
-    // 👉 Use location.href instead of window.open for better reliability
-    window.location.href = whatsappURL;
-
-    // 5. Post-submission: Reset and update UI
-    if (typeof paymentModal !== 'undefined') {
-      paymentModal.classList.remove('active');
+        fetch('/uploads/upload.php', {
+            method: 'POST',
+            body: uploadFormData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                message += `
+📎 *Proof of Payment:* ${data.url}
+`; // Add the public URL to the message
+            } else {
+                message += `
+📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}
+`;
+            }
+            sendWhatsAppMessage(message);
+        })
+        .catch(error => {
+            console.error('Error uploading payment proof:', error);
+            message += `
+📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}
+`;
+            sendWhatsAppMessage(message);
+        });
+    } else {
+        sendWhatsAppMessage(message);
     }
 
-    if (typeof successNotification !== 'undefined') {
-      successNotification.classList.add('active');
+    function sendWhatsAppMessage(finalMessage) {
+        // 4. Encode and redirect to WhatsApp
+        const encodedMessage = encodeURIComponent(finalMessage);
+
+        // ✅ Replace with YOUR WhatsApp number in international format (no + or 0)
+        const whatsappNumber = '2347051890111';
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        // Debug information
+        console.log('WhatsApp Number:', whatsappNumber);
+        console.log('Original Message:', finalMessage);
+        console.log('Encoded Message:', encodedMessage);
+        console.log('WhatsApp URL:', whatsappURL);
+
+        // 👉 Use location.href instead of window.open for better reliability
+        window.location.href = whatsappURL;
+
+        // 5. Post-submission: Reset and update UI
+        if (typeof paymentModal !== 'undefined') {
+            paymentModal.classList.remove('active');
+        }
+
+        if (typeof successNotification !== 'undefined') {
+            successNotification.classList.add('active');
+        }
+
+        localStorage.removeItem('cart');
+        if (typeof updateCart === 'function') updateCart();
+        if (document.getElementById('cartItems') && typeof renderCart === 'function') {
+            renderCart();
+        }
+
+        checkoutForm.reset(); // Use checkoutForm.reset() instead of this.reset()
+
+        setTimeout(() => {
+            if (typeof successNotification !== 'undefined') {
+                successNotification.classList.remove('active');
+            }
+        }, 5000);
     }
-
-    localStorage.removeItem('cart');
-    if (typeof updateCart === 'function') updateCart();
-    if (document.getElementById('cartItems') && typeof renderCart === 'function') {
-      renderCart();
-    }
-
-    this.reset();
-
-    setTimeout(() => {
-      if (typeof successNotification !== 'undefined') {
-        successNotification.classList.remove('active');
-      }
-    }, 5000);
   });
 }
-
 
 // Function to handle package card navigation
 function setupPackageNavigation(containerId) {
