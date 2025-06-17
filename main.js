@@ -82,13 +82,14 @@ if (customPackageBtn) {
 
 // Checkout button (only this opens the modal)
 if (checkoutBtn && paymentModal) {
-    checkoutBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length > 0) {
-            paymentModal.classList.add('active');
-        }
-    });
+    // Commenting out checkout button functionality
+    // checkoutBtn.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //     if (cart.length > 0) {
+    //         paymentModal.classList.add('active');
+    //     }
+    // });
 }
 
 // Close modal
@@ -365,6 +366,8 @@ document.addEventListener('DOMContentLoaded', function () {
 const checkoutForm = document.getElementById('checkoutForm');
 
 if (checkoutForm) {
+  // The checkout form submission functionality is currently commented out.
+  // Uncomment the following block to enable it.
   checkoutForm.addEventListener('submit', function (e) {
     e.preventDefault(); // Stop normal form submission
 
@@ -390,54 +393,36 @@ if (checkoutForm) {
     const paymentProof = formData.get('Proof of Payment'); // This is a File object
 
     // 3. Build WhatsApp message (initially without image URL)
-    let message = `*🛒 New Order Received!*
+    let message = `🛒 New Order Received!\n\n`;
+    message += `Customer Info:\n`;
+    message += `👤 Name: ${firstName} ${lastName}\n`;
+    message += `📞 Phone: ${phone}\n`;
+    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}\n\n`;
 
-`;
-    message += `*Customer Info:*
-`;
-    message += `👤 Name: ${firstName} ${lastName}
-`;
-    message += `📞 Phone: ${phone}
-`;
-    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}
-
-`;
-
-    message += `*🧾 Order Items:*
-`;
+    message += `🧾 Order Items:\n`;
     if (cart.length === 0) {
-      message += `No items in cart.
-`;
+      message += `No items in cart.\n`;
     } else {
       cart.forEach(item => {
-        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}
-`;
+        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
         if (item.images && item.images.length > 0) {
-          message += `  📷 Product Images:
-`;
+          message += `  📷 Product Images:\n`;
           item.images.forEach((image, index) => {
-            message += `    ${index + 1}. ${image}
-`;
+            message += `    ${index + 1}. ${image}\n`;
           });
         }
       });
     }
 
-    message += `
-💰 *Total:* ₦${total.toFixed(2)}
-`;
-    message += `💳 *Payment Method:* ${paymentMethod}
-`;
+    message += `\n💰 Total: ₦${total.toFixed(2)}\n`;
+    message += `💳 Payment Method: ${paymentMethod}\n`;
 
     if (transactionId) {
-      message += `🧾 *Transaction ID:* ${transactionId}
-`;
+      message += `🧾 Transaction ID: ${transactionId}\n`;
     }
 
     if (deliveryNotes) {
-      message += `📝 *Delivery Notes:*
-${deliveryNotes}
-`;
+      message += `📝 Delivery Notes:\n${deliveryNotes}\n`;
     }
 
     // Handle payment proof upload and then send WhatsApp message
@@ -452,21 +437,15 @@ ${deliveryNotes}
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                message += `
-📎 *Proof of Payment:* ${data.url}
-`; // Add the public URL to the message
+                message += `\n📎 Proof of Payment: ${data.url}\n`; // Add the public URL to the message
             } else {
-                message += `
-📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}
-`;
+                message += `\n📎 Proof of Payment: Upload failed: ${data.message || 'Unknown error'}\n`;
             }
             sendWhatsAppMessage(message);
         })
         .catch(error => {
             console.error('Error uploading payment proof:', error);
-            message += `
-📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}
-`;
+            message += `\n📎 Proof of Payment: Upload error: ${error.message || 'Network error'}\n`;
             sendWhatsAppMessage(message);
         });
     } else {
