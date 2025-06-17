@@ -1038,11 +1038,11 @@ header {
     display: flex;
     overflow: hidden;
     position: relative;
-    max-height: 500px;
+    max-height: 350px;
 }
 .custom-slider-img {
     width: 100%;
-    height: 500px;
+    height: 100%;
     object-fit: cover;
     display: none;
 }
@@ -1182,18 +1182,7 @@ header {
   .header-top.sidebar .nav-links {
     display: flex !important;
   }
-  .Men-container {
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
-    margin: auto;
-  }
-  .kid-container {
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
-    margin: auto;
-  }
+  
   .custom-package-card {
     max-width: 100%;
     width: 100%;
@@ -1431,20 +1420,6 @@ header {
         padding-bottom: 0;
     }
 }
-
-/* Glassmorphism background wrapper for container */
-.glass-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1999;
-    overflow: hidden;
-    display: none;
-}
-
 /* Custom Package Containers */
 .Men-container,
 .Women-container,
@@ -1538,8 +1513,8 @@ header {
 
 .custom-slider-img {
     width: 100%;
-    height: 400px;
-    object-fit: contain;
+    height: 500px;
+    object-fit: cover;
     border-radius: 8px;
     scroll-snap-align: start;
 }
@@ -1703,25 +1678,25 @@ header {
         margin: 10px 0;
     }
 
-    .custom-slider-wrapper {
+   /*  .custom-slider-wrapper {
         height: 250px;
     }
 
     .custom-slider-images {
-        height: 200px;
+        height: 350px !important;
     }
 
     .custom-slider-img {
-        height: 200px;
+        height: 100%;
     }
-
+ */
     .custom-package-info {
         padding: 15px;
     }
 
     .custom-package-info p {
         font-size: 1rem !important;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         font-weight: 700 !important;
     }
 
@@ -1751,7 +1726,7 @@ header {
     .package-img img {
         width: 100%;
         height: 250px !important;
-        object-fit: cover;
+        object-fit: contain !important;
     }
 
     .package-info {
@@ -1798,24 +1773,25 @@ header {
         margin: 15px 0;
     }
 
-    .custom-slider-wrapper {
+ /*    .custom-slider-wrapper {
         height: 350px;
     }
 
     .custom-slider-images {
-        height: 300px;
+        height: 400px!important;
     }
 
     .custom-slider-img {
-        height: 300px;
-    }
+        height: 100%!important;
+    } */
 
     .custom-package-info {
         padding: 20px;
     }
 
     .custom-package-info p {
-        font-size: 15px;
+        font-size: 1rem!important;
+        font-weight: 500!important;
         margin-bottom: 10px;
     }
 
@@ -1859,42 +1835,10 @@ header {
 }
 
 .custom-package-info p strong {
-    font-weight: 600;
+    font-weight: 700!important;
+    font-size: 1.2rem;
 }
 
-.color-badge {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%; /* Makes them circular */
-    margin-right: 5px;
-    border: 1px solid #e0e0e0; /* Light border for definition */
-    vertical-align: middle;
-}
-
-.color-gray {
-    background-color: #a0aec0;
-}
-
-.color-green {
-    background-color: #48bb78;
-}
-
-.color-blue {
-    background-color: #4299e1;
-}
-
-.color-black {
-    background-color: #2d3748;
-}
-
-.color-navy {
-    background-color: #3182ce;
-}
-
-.color-coral-pink {
-    background-color: #ff6b6b;
-}
 
 .custom-package-sections {
     position: relative;
@@ -1966,7 +1910,7 @@ header {
 .women-custom .custom-slider-images, 
 .kids-custom .custom-slider-images {
     width: 100%!important;
-    height: 300px!important;
+    height: 500px!important;
     overflow: hidden!important;
 }
 
@@ -1975,7 +1919,7 @@ header {
 .kids-custom .custom-slider-img {
     width: 100%!important;
     height: 100%!important;
-    object-fit: cover!important;
+    object-fit: fill !important;
 }
 
 .men-custom .custom-package-info,
@@ -2027,16 +1971,8 @@ header {
     text-align: center!important;
 }
 
-/* Responsive adjustments for men-custom */
-@media (max-width: 1024px) {
-    .men-custom,
-    .women-custom,
-    .kids-custom {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .men-custom,
     .women-custom,
     .kids-custom {
@@ -2058,6 +1994,6 @@ header {
     .men-custom .custom-slider-images,
     .women-custom .custom-slider-images,
     .kids-custom .custom-slider-images {
-        height: 250px!important;
+        height: 350px!important;
     }
 }
