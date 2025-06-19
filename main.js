@@ -398,91 +398,100 @@ if (checkoutForm) {
     const paymentProof = formData.get('Proof of Payment'); // This is a File object
 
     // 3. Build WhatsApp message (initially without image URL)
-    let message = `*🛒 New Order Received!*
+    let message = `*🛒 New Order Received!*\n\n`;
+    message += `*Customer Info:*\n`;
+    message += `👤 Name: ${firstName} ${lastName}\n`;
+    message += `📞 Phone: ${phone}\n`;
+    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}\n\n`;
 
-`;
-    message += `*Customer Info:*
-`;
-    message += `👤 Name: ${firstName} ${lastName}
-`;
-    message += `📞 Phone: ${phone}
-`;
-    message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}
-
-`;
-
-    message += `*🧾 Order Items:*
-`;
+    message += `*🧾 Order Items:*\n`;
     if (cart.length === 0) {
-      message += `No items in cart.
-`;
+      message += `No items in cart.\n`;
     } else {
+      // We'll collect all image URLs to shorten
+      let allImagePromises = [];
       cart.forEach(item => {
-        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}
-`;
+        message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
         if (item.images && item.images.length > 0) {
-          message += `  📷 Product Images:
-`;
+          message += `  📷 Product Images:\n`;
+          // For each image, push a promise to shorten it
           item.images.forEach((image, index) => {
-            message += `    ${index + 1}. ${image}
-`;
+            allImagePromises.push(
+              shortenUrl(image).then(shortUrl => {
+                return {itemIndex: cart.indexOf(item), imgIndex: index, shortUrl};
+              })
+            );
           });
         }
       });
-    }
-
-    message += `
-💰 *Total:* ₦${total.toFixed(2)}
-`;
-    message += `💳 *Payment Method:* ${paymentMethod}
-`;
-
-    if (transactionId) {
-      message += `🧾 *Transaction ID:* ${transactionId}
-`;
-    }
-
-    if (deliveryNotes) {
-      message += `📝 *Delivery Notes:*
-${deliveryNotes}
-`;
-    }
-
-    // URL Shortener using TinyURL (no API key required)
-    function shortenUrl(longUrl) {
-        return fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`)
-            .then(response => response.text())
-            .catch(() => longUrl); // fallback to original if error
-    }
-
-    // Handle payment proof upload and then send WhatsApp message
-    if (paymentProof && paymentProof.name) {
-        const uploadFormData = new FormData();
-        uploadFormData.append('paymentProof', paymentProof);
-
-        fetch('/uploads/upload.php', {
-            method: 'POST',
-            body: uploadFormData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                shortenUrl(data.url).then(shortUrl => {
-                    message += `\n📎 *Proof of Payment:* ${shortUrl}\n`;
-                    sendWhatsAppMessage(message);
-                });
-            } else {
-                message += `\n📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}\n`;
-                sendWhatsAppMessage(message);
-            }
-        })
-        .catch(error => {
-            console.error('Error uploading payment proof:', error);
-            message += `\n📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}\n`;
-            sendWhatsAppMessage(message);
+      // Wait for all image URLs to be shortened before continuing
+      Promise.all(allImagePromises).then(shortenedImages => {
+        // Insert shortened URLs into the message
+        let imgCounter = 0;
+        cart.forEach(item => {
+          if (item.images && item.images.length > 0) {
+            item.images.forEach((image, index) => {
+              const found = shortenedImages.find(s => s.itemIndex === cart.indexOf(item) && s.imgIndex === index);
+              if (found) {
+                message += `    ${index + 1}. ${found.shortUrl}\n`;
+              } else {
+                message += `    ${index + 1}. ${image}\n`;
+              }
+              imgCounter++;
+            });
+          }
         });
-    } else {
-        sendWhatsAppMessage(message);
+        // Continue with the rest of the process (total, payment, etc.)
+        finishWhatsAppMessage();
+      });
+      // Return here so the rest of the code waits for shortening
+      return;
+    }
+
+    // If no images to shorten, continue as normal
+    finishWhatsAppMessage();
+
+    function finishWhatsAppMessage() {
+      message += `\n💰 *Total:* ₦${total.toFixed(2)}\n`;
+      message += `💳 *Payment Method:* ${paymentMethod}\n`;
+
+      if (transactionId) {
+        message += `🧾 *Transaction ID:* ${transactionId}\n`;
+      }
+
+      if (deliveryNotes) {
+        message += `📝 *Delivery Notes:*\n${deliveryNotes}\n`;
+      }
+
+      // Handle payment proof upload and then send WhatsApp message
+      if (paymentProof && paymentProof.name) {
+          const uploadFormData = new FormData();
+          uploadFormData.append('paymentProof', paymentProof);
+
+          fetch('/uploads/upload.php', {
+              method: 'POST',
+              body: uploadFormData
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  shortenUrl(data.url).then(shortUrl => {
+                      message += `\n📎 *Proof of Payment:* ${shortUrl}\n`;
+                      sendWhatsAppMessage(message);
+                  });
+              } else {
+                  message += `\n📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}\n`;
+                  sendWhatsAppMessage(message);
+              }
+          })
+          .catch(error => {
+              console.error('Error uploading payment proof:', error);
+              message += `\n📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}\n`;
+              sendWhatsAppMessage(message);
+          });
+      } else {
+          sendWhatsAppMessage(message);
+      }
     }
 
     function sendWhatsAppMessage(finalMessage) {
