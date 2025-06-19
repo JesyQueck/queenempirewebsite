@@ -257,6 +257,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Custom package button
+    const customPackageBtn = document.getElementById('customPackageBtn');
+    if (customPackageBtn) {
+        customPackageBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'mychoice.html';
+        });
+    }
 });
 
 // Custom Package Slider Control - REFACTORED to be generic
@@ -439,6 +448,13 @@ ${deliveryNotes}
 `;
     }
 
+    // URL Shortener using TinyURL (no API key required)
+    function shortenUrl(longUrl) {
+        return fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`)
+            .then(response => response.text())
+            .catch(() => longUrl); // fallback to original if error
+    }
+
     // Handle payment proof upload and then send WhatsApp message
     if (paymentProof && paymentProof.name) {
         const uploadFormData = new FormData();
@@ -451,21 +467,18 @@ ${deliveryNotes}
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                message += `
-📎 *Proof of Payment:* ${data.url}
-`; // Add the public URL to the message
+                shortenUrl(data.url).then(shortUrl => {
+                    message += `\n📎 *Proof of Payment:* ${shortUrl}\n`;
+                    sendWhatsAppMessage(message);
+                });
             } else {
-                message += `
-📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}
-`;
+                message += `\n📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}\n`;
+                sendWhatsAppMessage(message);
             }
-            sendWhatsAppMessage(message);
         })
         .catch(error => {
             console.error('Error uploading payment proof:', error);
-            message += `
-📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}
-`;
+            message += `\n📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}\n`;
             sendWhatsAppMessage(message);
         });
     } else {
