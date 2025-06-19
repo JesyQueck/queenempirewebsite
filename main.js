@@ -408,90 +408,54 @@ if (checkoutForm) {
     if (cart.length === 0) {
       message += `No items in cart.\n`;
     } else {
-      // We'll collect all image URLs to shorten
-      let allImagePromises = [];
       cart.forEach(item => {
         message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
         if (item.images && item.images.length > 0) {
           message += `  📷 Product Images:\n`;
-          // For each image, push a promise to shorten it
           item.images.forEach((image, index) => {
-            allImagePromises.push(
-              shortenUrl(image).then(shortUrl => {
-                return {itemIndex: cart.indexOf(item), imgIndex: index, shortUrl};
-              })
-            );
+            message += `    ${index + 1}. ${image}\n`;
           });
         }
       });
-      // Wait for all image URLs to be shortened before continuing
-      Promise.all(allImagePromises).then(shortenedImages => {
-        // Insert shortened URLs into the message
-        let imgCounter = 0;
-        cart.forEach(item => {
-          if (item.images && item.images.length > 0) {
-            item.images.forEach((image, index) => {
-              const found = shortenedImages.find(s => s.itemIndex === cart.indexOf(item) && s.imgIndex === index);
-              if (found) {
-                message += `    ${index + 1}. ${found.shortUrl}\n`;
-              } else {
-                message += `    ${index + 1}. ${image}\n`;
-              }
-              imgCounter++;
-            });
-          }
-        });
-        // Continue with the rest of the process (total, payment, etc.)
-        finishWhatsAppMessage();
-      });
-      // Return here so the rest of the code waits for shortening
-      return;
     }
 
-    // If no images to shorten, continue as normal
-    finishWhatsAppMessage();
+    message += `\n💰 *Total:* ₦${total.toFixed(2)}\n`;
+    message += `💳 *Payment Method:* ${paymentMethod}\n`;
 
-    function finishWhatsAppMessage() {
-      message += `\n💰 *Total:* ₦${total.toFixed(2)}\n`;
-      message += `💳 *Payment Method:* ${paymentMethod}\n`;
+    if (transactionId) {
+      message += `🧾 *Transaction ID:* ${transactionId}\n`;
+    }
 
-      if (transactionId) {
-        message += `🧾 *Transaction ID:* ${transactionId}\n`;
-      }
+    if (deliveryNotes) {
+      message += `📝 *Delivery Notes:*\n${deliveryNotes}\n`;
+    }
 
-      if (deliveryNotes) {
-        message += `📝 *Delivery Notes:*\n${deliveryNotes}\n`;
-      }
+    // Handle payment proof upload and then send WhatsApp message
+    if (paymentProof && paymentProof.name) {
+        const uploadFormData = new FormData();
+        uploadFormData.append('paymentProof', paymentProof);
 
-      // Handle payment proof upload and then send WhatsApp message
-      if (paymentProof && paymentProof.name) {
-          const uploadFormData = new FormData();
-          uploadFormData.append('paymentProof', paymentProof);
-
-          fetch('/uploads/upload.php', {
-              method: 'POST',
-              body: uploadFormData
-          })
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  shortenUrl(data.url).then(shortUrl => {
-                      message += `\n📎 *Proof of Payment:* ${shortUrl}\n`;
-                      sendWhatsAppMessage(message);
-                  });
-              } else {
-                  message += `\n📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}\n`;
-                  sendWhatsAppMessage(message);
-              }
-          })
-          .catch(error => {
-              console.error('Error uploading payment proof:', error);
-              message += `\n📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}\n`;
-              sendWhatsAppMessage(message);
-          });
-      } else {
-          sendWhatsAppMessage(message);
-      }
+        fetch('/uploads/upload.php', {
+            method: 'POST',
+            body: uploadFormData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                message += `\n📎 *Proof of Payment:* ${data.url}\n`;
+                sendWhatsAppMessage(message);
+            } else {
+                message += `\n📎 *Proof of Payment:* Upload failed: ${data.message || 'Unknown error'}\n`;
+                sendWhatsAppMessage(message);
+            }
+        })
+        .catch(error => {
+            console.error('Error uploading payment proof:', error);
+            message += `\n📎 *Proof of Payment:* Upload error: ${error.message || 'Network error'}\n`;
+            sendWhatsAppMessage(message);
+        });
+    } else {
+        sendWhatsAppMessage(message);
     }
 
     function sendWhatsAppMessage(finalMessage) {
