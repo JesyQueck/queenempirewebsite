@@ -428,7 +428,7 @@ if (checkoutForm) {
         const uploadFormData = new FormData();
         uploadFormData.append('paymentProof', paymentProof);
 
-        fetch('/uploads/upload.php', {
+        fetch('uploads/upload.php', {
             method: 'POST',
             body: uploadFormData
         })
