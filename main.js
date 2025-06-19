@@ -75,8 +75,7 @@ document.addEventListener('click', function(e) {
 if (customPackageBtn) {
     customPackageBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('Custom package feature coming soon!');
-        // Optionally add to cart here if needed
+        window.location.href = 'mychoice.html';
     });
 }
 
