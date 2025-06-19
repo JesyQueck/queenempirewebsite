@@ -75,12 +75,14 @@ document.addEventListener('click', function(e) {
 if (customPackageBtn) {
     customPackageBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        window.location.href = 'mychoice.html';
+        alert('Custom package feature coming soon!');
+        // Optionally add to cart here if needed
     });
 }
 
 // Checkout button (only this opens the modal)
 if (checkoutBtn && paymentModal) {
+    // Commenting out checkout button functionality
      checkoutBtn.addEventListener('click', function(e) {
          e.preventDefault();
          let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -428,14 +430,15 @@ if (checkoutForm) {
         const uploadFormData = new FormData();
         uploadFormData.append('paymentProof', paymentProof);
 
-        fetch('uploads/upload.php', {
+        fetch('/uploads/upload.php', {
             method: 'POST',
             body: uploadFormData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                message += `\n📎 Proof of Payment: ${data.url}\n`; // Add the public URL to the message
+                // WhatsApp previews the first link in the message, so put the image URL first
+                message = `${data.url}\n\n` + message;
             } else {
                 message += `\n📎 Proof of Payment: Upload failed: ${data.message || 'Unknown error'}\n`;
             }
