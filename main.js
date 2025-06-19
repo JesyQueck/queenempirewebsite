@@ -75,21 +75,19 @@ document.addEventListener('click', function(e) {
 if (customPackageBtn) {
     customPackageBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('Custom package feature coming soon!');
-        // Optionally add to cart here if needed
+        window.location.href = 'mychoice.html';
     });
 }
 
 // Checkout button (only this opens the modal)
 if (checkoutBtn && paymentModal) {
-    // Commenting out checkout button functionality
-    // checkoutBtn.addEventListener('click', function(e) {
-    //     e.preventDefault();
-    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    //     if (cart.length > 0) {
-    //         paymentModal.classList.add('active');
-    //     }
-    // });
+     checkoutBtn.addEventListener('click', function(e) {
+         e.preventDefault();
+         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+         if (cart.length > 0) {
+             paymentModal.classList.add('active');
+         }
+     });
 }
 
 // Close modal
