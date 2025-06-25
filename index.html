@@ -127,7 +127,7 @@
     <section id="faq" class="container" style="margin: 60px auto; max-width: 800px;">
         <div class="section-title" style="text-align: center; margin-bottom: 30px;">
             <h2>Frequently Asked Questions</h2>
-            <p>Everything you need to know about Queens Empire products and services</p>
+            <p>Everything you need to know about Queens Empire Broekies services</p>
         </div>
         <div class="faq-list">
             <div class="faq-item">
@@ -152,30 +152,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-    // Simple FAQ accordion
-    document.addEventListener('DOMContentLoaded', function() {
-        const questions = document.querySelectorAll('.faq-question');
-        questions.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                // Close all
-                questions.forEach(q => {
-                    q.setAttribute('aria-expanded', 'false');
-                    q.nextElementSibling.style.display = 'none';
-                });
-                // Open clicked
-                if (!expanded) {
-                    this.setAttribute('aria-expanded', 'true');
-                    this.nextElementSibling.style.display = 'block';
-                }
-            });
-            // Start closed
-            btn.nextElementSibling.style.display = 'none';
-        });
-    });
-    </script>
 
     <!-- Footer -->
     <footer id="footer" style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
