@@ -123,117 +123,173 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="container" style="margin: 60px auto; max-width: 800px;">
+        <div class="section-title" style="text-align: center; margin-bottom: 30px;">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about Queens Empire products and services</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">What makes Queens Empire underwear unique?</button>
+                <div class="faq-answer">Our underwear is crafted from premium, breathable fabrics for maximum comfort and durability. We combine stylish designs with functional features to ensure you feel confident every day.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">How do I find my correct size?</button>
+                <div class="faq-answer">Please refer to our Size Guide in the Customer Service section below. If you need further assistance, our support team is happy to help you find the perfect fit.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">What is your return policy?</button>
+                <div class="faq-answer">We offer a hassle-free return policy within 14 days of delivery for unworn and unwashed items. Please see our Shipping & Returns page for full details.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">How do I care for my underwear?</button>
+                <div class="faq-answer">For best results, machine wash cold with like colors and tumble dry low. Avoid bleach and fabric softeners to maintain fabric quality.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Do you offer international shipping?</button>
+                <div class="faq-answer">Yes, we ship worldwide! Shipping fees and delivery times vary by location. Please check our Shipping & Returns page for more information.</div>
+            </div>
+        </div>
+    </section>
 
- <!-- Footer -->
- <footer id="footer" style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
-            <!-- About Queens Empire -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">About Queens Empire</h3>
-                <p style="color: #a0aec0; margin-bottom: 20px; line-height: 1.7;">
-                    Queens Empire Broekies Ltd. is a premium underwear brand specializing in high-quality, comfortable 
-                    undergarments for both children and adults. Since our founding, we've been committed to providing 
-                    stylish, durable underwear that combines fashion with functionality.
-                </p>
-                <div style="display: flex; margin-top: 20px;">
-                    <a href="https://www.facebook.com/share/1DJ6TZ9EJk/" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+    <script>
+    // Simple FAQ accordion
+    document.addEventListener('DOMContentLoaded', function() {
+        const questions = document.querySelectorAll('.faq-question');
+        questions.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                // Close all
+                questions.forEach(q => {
+                    q.setAttribute('aria-expanded', 'false');
+                    q.nextElementSibling.style.display = 'none';
+                });
+                // Open clicked
+                if (!expanded) {
+                    this.setAttribute('aria-expanded', 'true');
+                    this.nextElementSibling.style.display = 'block';
+                }
+            });
+            // Start closed
+            btn.nextElementSibling.style.display = 'none';
+        });
+    });
+    </script>
+
+    <!-- Footer -->
+    <footer id="footer" style="background-color: #2d3748; color: white; padding: 60px 0 30px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <!-- About Queens Empire -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">About Queens Empire</h3>
+                    <p style="color: #a0aec0; margin-bottom: 20px; line-height: 1.7;">
+                        Queens Empire Broekies Ltd. is a premium underwear brand specializing in high-quality, comfortable 
+                        undergarments for both children and adults. Since our founding, we've been committed to providing 
+                        stylish, durable underwear that combines fashion with functionality.
+                    </p>
+                    <div style="display: flex; margin-top: 20px;">
+                        <a href="https://www.facebook.com/share/1DJ6TZ9EJk/" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; margin-right: 10px; color: white; transition: all 0.3s;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Customer Service</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Shipping & Returns</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Size Guide</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Tracking & Order</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Shop -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Shop</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#product" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">All Products</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="fullSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Full Set Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="halfSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Mini Set Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="thankYouProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Thank You Packages</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">My Choice Packages</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Contact Us</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 15px; color: #e83e8c; margin-top: 4px;"></i>
+                            <span style="color: #a0aec0;">Ijebu ode stadium road after idomila area, Rasonwa Alli Kareem street new site</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-phone-alt" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <a href="tel:+2348066418647" style="color: #a0aec0; text-decoration: none;">+2348066418647</a>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-envelope" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <a href="mailto:queenempire47@gmail.com" style="color: #a0aec0; text-decoration: none;">queenempire47@gmail.com</a>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-clock" style="margin-right: 15px; color: #e83e8c;"></i>
+                            <span style="color: #a0aec0;">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Customer Service -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Customer Service</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Shipping & Returns</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Size Guide</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Shop -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Shop</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;">
-                        <a href="#product" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">All Products</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="fullSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Full Set Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="halfSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Mini Set Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="thankYouProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Thank You Packages</a>
-                    </li>
-                    <li style="margin-bottom: 12px;">
-                        <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">My Choice Packages</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Contact Information -->
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Contact Us</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                        <i class="fas fa-map-marker-alt" style="margin-right: 15px; color: #e83e8c; margin-top: 4px;"></i>
-                        <span style="color: #a0aec0;">Ijebu ode stadium road after idomila area, Rasonwa Alli Kareem street new site</span>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-phone-alt" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <a href="tel:+2348066418647" style="color: #a0aec0; text-decoration: none;">+2348066418647</a>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-envelope" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <a href="mailto:queenempire47@gmail.com" style="color: #a0aec0; text-decoration: none;">queenempire47@gmail.com</a>
-                    </li>
-                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
-                        <i class="fas fa-clock" style="margin-right: 15px; color: #e83e8c;"></i>
-                        <span style="color: #a0aec0;">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</span>
-                    </li>
-                </ul>
+            <!-- Copyright -->
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0; font-size: 0.9rem;">
+                <p>&copy; 2023 Queens Empire Broekies Ltd. All Rights Reserved.</p>
             </div>
         </div>
+    </footer>
 
-        <!-- Copyright -->
-        <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0; font-size: 0.9rem;">
-            <p>&copy; 2023 Queens Empire Broekies Ltd. All Rights Reserved.</p>
+    <!-- Item Preview Modal -->
+    <!-- <div class="item-preview-modal" id="itemPreviewModal">
+        <div class="item-preview-content">
+            <span class="item-preview-close" id="itemPreviewClose">&times;</span>
+            <img id="previewImg" src="" alt="Preview" />
+            <h3 id="previewTitle"></h3>
+            <p id="previewCategory"></p>
+            <div id="previewPrice"></div>
         </div>
-    </div>
-</footer>
-
-<!-- Item Preview Modal -->
-<!-- <div class="item-preview-modal" id="itemPreviewModal">
-    <div class="item-preview-content">
-        <span class="item-preview-close" id="itemPreviewClose">&times;</span>
-        <img id="previewImg" src="" alt="Preview" />
-        <h3 id="previewTitle"></h3>
-        <p id="previewCategory"></p>
-        <div id="previewPrice"></div>
-    </div>
-</div> -->
+    </div> -->
 
     <script src="main.js"></script>
 </body>
