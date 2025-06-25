@@ -752,3 +752,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+ // Simple FAQ accordion
+ document.addEventListener('DOMContentLoaded', function() {
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            // Close all
+            questions.forEach(q => {
+                q.setAttribute('aria-expanded', 'false');
+                q.nextElementSibling.style.display = 'none';
+            });
+            // Open clicked
+            if (!expanded) {
+                this.setAttribute('aria-expanded', 'true');
+                this.nextElementSibling.style.display = 'block';
+            }
+        });
+        // Start closed
+        btn.nextElementSibling.style.display = 'none';
+    });
+});
