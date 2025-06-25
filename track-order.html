@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Track Your Order - Queens Empire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="Asset/logo.jpg" type="image/x-icon">
+  <style>
+    .track-container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(44,55,130,0.07);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .track-container input, .track-container button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 90%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .track-container button {
+      background: var(--primary, #e83e8c);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .track-container button:hover {
+      background: var(--primary-dark, #c22570);
+    }
+    @media (max-width: 670px) {
+      .track-container {
+        padding: 18px 4vw;
+        margin: 30px 0;
+      }
+      .track-container input, .track-container button {
+        width: 100%;
+        font-size: 0.97rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="track-container">
+    <a href="index.html" style="color: var(--primary); font-weight: 500; text-decoration: none; display: inline-block; margin-bottom: 18px;">&larr; Back to Home</a>
+    <h2>Track Your Order</h2>
+    <form id="trackingForm">
+      <input type="text" id="trackingNumber" placeholder="Enter your Red Star tracking number" required>
+      <button type="submit">Track</button>
+    </form>
+    <p style="font-size:0.95em;color:#888;">You will be redirected to Red Star Express to view your shipment status.</p>
+  </div>
+  <script>
+    document.getElementById('trackingForm').onsubmit = function(e) {
+      e.preventDefault();
+      window.open('https://redstarplc.com/tracker/', '_blank');
+    };
+  </script>
+</body>
+</html> 
