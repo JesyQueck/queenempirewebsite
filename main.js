@@ -404,11 +404,14 @@ if (checkoutForm) {
     message += `📞 Phone: ${phone}\n`;
     message += `🏠 Address: ${address}, ${city}, ${region}, ${postalCode}, ${country}\n\n`;
 
-    message += `*🧾 Order Items:*\n`;
-    if (cart.length === 0) {
+    message += `*🧾 Order Items:*
+`;
+    // Only include items with both name and price (i.e., those with data-name and data-price)
+    const filteredCart = cart.filter(item => item.name && item.price > 0);
+    if (filteredCart.length === 0) {
       message += `No items in cart.\n`;
     } else {
-      cart.forEach(item => {
+      filteredCart.forEach(item => {
         message += `- ${item.name || 'Unnamed Product'} - ₦${(item.price || 0).toFixed(2)}\n`;
         if (item.images && item.images.length > 0) {
           message += `  📷 Product Images:\n`;
@@ -463,7 +466,7 @@ if (checkoutForm) {
         const encodedMessage = encodeURIComponent(finalMessage);
 
         // ✅ Replace with YOUR WhatsApp number in international format (no + or 0)
-        const whatsappNumber = '2348066418647';
+        const whatsappNumber = 2347051890111 /* '2348066418647' */;
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
         // Debug information
