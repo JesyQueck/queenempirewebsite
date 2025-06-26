@@ -466,7 +466,7 @@ if (checkoutForm) {
         const encodedMessage = encodeURIComponent(finalMessage);
 
         // ✅ Replace with YOUR WhatsApp number in international format (no + or 0)
-        const whatsappNumber = 2347051890111 /* '2348066418647' */;
+        const whatsappNumber = 2347051890111;
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
         // Debug information
