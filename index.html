@@ -7,6 +7,32 @@
     <link rel="shortcut icon" href="Asset/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
      <link rel="stylesheet" href="style.css">
+     <style>
+        .offer-banner {
+          width: 100%;
+            background-color: var(--primary-dark);
+            color: #ffff;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 0.2rem 0.8rem ;
+            animation: scrollBanner 15s linear infinite;
+            overflow: hidden;
+        }
+        .offer-marquee{
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); 
+            }
+            100% { transform: translateX(-100%); }
+        }
+        </style>
 </head>
 <body>
     <!-- Header -->
@@ -21,7 +47,6 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
-                    <li><a href="#products">Products</a></li>
                     <li><a href="index.html#footer">About</a></li>
                 </ul>
                    <div class="header-icons">
@@ -42,23 +67,25 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#packages">Packages</a></li>
-                    <li><a href="#products">Products</a></li>
                     <li><a href="index.html#footer">About</a></li>
                 </ul>
             </div>
         </div>
     </header>
-
+ <div class="offer-banner">
+        <div class="offer-marquee">
+          🎁 SPECIAL GIFTS OFFERS! 🎁 BUY GOODS WORTH &#8358;30,000 OR MORE AND GET A FREE GIFT!
+        </div>
+   </div>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Premium Underwear for All Ages</h1>
             <p>Discover our exclusive collections of comfortable and stylish underwear, vests, and camisoles for children and adults</p>
             <a href="#packages" class="btn">View Packages</a>
-            <a href="#products" class="btn btn-outline">Shop Products</a>
         </div>
     </section>
-
+   
     <!-- Packages Section -->
     <section id="packages" class="container">
         <div class="section-title">
@@ -94,7 +121,7 @@
             </div>
 
             <!-- Thank You Package -->
-            <div class="package-card">
+            <!-- <div class="package-card">
                 <div class="package-badge">Gift Ready</div>
                 <div class="package-img">
                     <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Thank You Package">
@@ -105,7 +132,7 @@
                     
                     <button class="add-to-cart" data-href="thankYouProduct.html">Select Category</button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- My Choice Package -->
             <div class="package-card">
@@ -183,10 +210,10 @@
                     <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Customer Service</h3>
                     <ul style="list-style: none;">
                         <li style="margin-bottom: 12px;">
-                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
+                            <a href="mailto:queenempire47@gmail.com" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Contact Us</a>
                         </li>
                         <li style="margin-bottom: 12px;">
-                            <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
+                            <a href="index.html#faq" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">FAQs</a>
                         </li>
                         <li style="margin-bottom: 12px;">
                             <a href="shipping-returns.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Shipping & Returns</a>
@@ -208,16 +235,10 @@
                     <h3 style="font-size: 1.5rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">Shop</h3>
                     <ul style="list-style: none;">
                         <li style="margin-bottom: 12px;">
-                            <a href="#product" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">All Products</a>
-                        </li>
-                        <li style="margin-bottom: 12px;">
                             <a href="fullSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Full Set Packages</a>
                         </li>
                         <li style="margin-bottom: 12px;">
                             <a href="halfSetProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Mini Set Packages</a>
-                        </li>
-                        <li style="margin-bottom: 12px;">
-                            <a href="thankYouProduct.html" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">Thank You Packages</a>
                         </li>
                         <li style="margin-bottom: 12px;">
                             <a href="#" style="color: #a0aec0; text-decoration: none; transition: color 0.3s;">My Choice Packages</a>

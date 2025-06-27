@@ -7,6 +7,33 @@
     <link rel="shortcut icon" href="Asset/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
      <link rel="stylesheet" href="style.css">
+     <!-- Marquee style -->
+     <style>
+      .offer-banner {
+        width: 100%;
+          background-color: var(--primary-dark);
+          color: #ffff;
+          padding: 15px;
+          font-weight: bold;
+          font-size: 18px;
+          white-space: nowrap;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          padding: 0.2rem 0.8rem ;
+          animation: scrollBanner 15s linear infinite;
+          overflow: hidden;
+      }
+      .offer-marquee{
+          display: inline-block;
+          padding-left: 100%;
+          animation: marquee 15s linear infinite;
+      }
+      
+      @keyframes marquee {
+          0% { transform: translateX(0); 
+          }
+          100% { transform: translateX(-100%); }
+      }
+      </style>
 </head>
 <body>
     <!-- Header -->
@@ -46,88 +73,18 @@
             </div>
         </div>
     </header>
-
+  <div class="offer-banner">
+        <div class="offer-marquee">
+          🎁 SPECIAL GIFTS OFFERS! 🎁 BUY GOODS WORTH &#8358;30,000 OR MORE AND GET A FREE GIFT!
+        </div>
+   </div>
     <!-- Products Section -->
     <section id="products" class="container">
         <div class="section-title">
             <h2>My Choice Package</h2>
             <p>High-quality underwear, vests, and camisoles for all ages</p>
         </div>
-        <div class="package-products">
-            <!-- Men -->
-            <div class="package-products">
-                <!-- Men -->
-                <!-- <div class="package-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Package">
-                    </div>
-                    <div class="package-info">
-                        <span class="product-category">Men's Package</span>
-                        <div class="package-price">
-                            <span class="current-price">$12.00</span>
-                        </div>
-                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px; margin-bottom: 15px;">
-                            <strong>Spec:</strong> 3 items bags<br>
-                            <strong>Package Contents:</strong><br>
-                            - Original HELLO single pic pack from the company<br>
-                            - Original single pack seamless condom<br>
-                            - 99V cotton boxer<br>
-                            - Original 2-1 M&S singlets<br>
-                            <strong>Fabric:</strong> High stretch, Light stretch, Medium stretch<br>
-                            <strong>Features:</strong> Sewn to fit, Tag free, Breathable, Long lasting<br>
-                            <strong>Colors:</strong> Gray, Green, Blue, Black, Navy, Coral Pink
-                        </div>
-                        <div class="product-actions">
-                            <button class="check-package" id="menCheckPackageBtn">Check package</button>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- Women -->
-                <!-- <div class="package-card">
-                    <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Full Pant">
-                    </div>
-                    <div class="package-info">
-                        <span class="product-category">Women's Package</span>
-                        <div class="package-price">
-                            <span class="current-price">$8.99</span>
-                        </div>
-                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
-                            <strong>Spec:</strong> 6–9 item bags<br>
-                            <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
-                            <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
-                            <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
-                        </div>
-                        <div class="product-actions">
-                            <button class="check-package" id="womenCheckPackageBtn">Check package</button>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- Kids -->
-               <!--  <div class="package-card">
-                    <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cotton Pant">
-                    </div>
-                    <div class="package-info">
-                        <span class="product-category">Kid's package</span>
-                        <div class="package-price">
-                            <span class="current-price">$10.99</span>
-                        </div>
-                        <div class="package-desc" style="font-size:0.85em; color:#718096; margin-top:8px;">
-                            <strong>Spec:</strong> 6–9 item bags<br>
-                            <strong>Elasticity:</strong> High (Stretchy), Mid (Elasticity), Low waist band<br>
-                            <strong>Materials:</strong> Cotton Blend, Seamless, Cotton<br>
-                            <strong>Types:</strong> American striped, Ruffles, Thongs, Seamless, High silk satin
-                        </div>
-                        <div class="product-actions">
-                            <button class="check-package" id="kidsCheckPackageBtn">Check package</button>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
     </section>
-
     <!-- Men Custom Package Section -->
      <div class="men-custom">
         <div class="custom-package-card" data-name="Item P601" data-price="16800">

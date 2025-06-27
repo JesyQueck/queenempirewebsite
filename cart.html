@@ -7,6 +7,32 @@
     <link rel="shortcut icon" href="Asset/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
      <link rel="stylesheet" href="style.css">
+     <style>
+        .offer-banner {
+          width: 100%;
+            background-color: var(--primary-dark);
+            color: #ffff;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 0.2rem 0.8rem ;
+            animation: scrollBanner 15s linear infinite;
+            overflow: hidden;
+        }
+        .offer-marquee{
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); 
+            }
+            100% { transform: translateX(-100%); }
+        }
+        </style>
 </head>
 <body>
     <!-- Header -->
@@ -47,7 +73,11 @@
             </div>
         </div>
     </header>
-
+    <div class="offer-banner">
+        <div class="offer-marquee">
+          🎁 SPECIAL GIFTS OFFERS! 🎁 BUY GOODS WORTH &#8358;30,000 OR MORE AND GET A FREE GIFT!
+        </div>
+      </div>
     <section id="products" class="container">
         <div class="section-title">
             <h2>My Cart</h2>
@@ -142,14 +172,6 @@
                                 <p>Transfer directly to our bank account</p>
                             </div>
                         </div>
-                        <!-- <div class="payment-method" id="mobileMoney">
-                            <input type="radio" name="Payment Method" id="mobileMoneyRadio" value="Mobile Money">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div class="payment-method-details">
-                                <label for="mobileMoneyRadio">Mobile Money</label>
-                                <p>Pay with your mobile money account</p>
-                            </div>
-                        </div> -->
                     </div>
 
                     <!-- Bank Details (Already present, no change needed as they are display only) -->
