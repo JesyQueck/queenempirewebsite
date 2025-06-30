@@ -14,6 +14,74 @@ const bankDetails = document.getElementById('bankDetails');
 const mobileMoneyDetails = document.getElementById('mobileMoneyDetails');
 const customPackageBtn = document.getElementById('customPackageBtn')
 
+// Delivery fee mapping for Nigerian states
+const deliveryFees = {
+  'Lagos': 2000,
+  'Abuja': 3000,
+  'Ogun': 2500,
+  'Oyo': 2500,
+  'Rivers': 3000,
+  'Kano': 3500,
+  'Kaduna': 3500,
+  'Enugu': 3000,
+  'Anambra': 3000,
+  'Delta': 3000,
+  'Edo': 3000,
+  'Akwa Ibom': 3500,
+  'Cross River': 3500,
+  'Osun': 2500,
+  'Ondo': 2500,
+  'Ekiti': 2500,
+  'Kwara': 2500,
+  'Plateau': 3500,
+  'Benue': 3500,
+  'Borno': 4000,
+  'Bauchi': 4000,
+  'Niger': 3000,
+  'Sokoto': 4000,
+  'Kebbi': 4000,
+  'Zamfara': 4000,
+  'Katsina': 4000,
+  'Jigawa': 4000,
+  'Yobe': 4000,
+  'Gombe': 4000,
+  'Taraba': 4000,
+  'Adamawa': 4000,
+  'Nasarawa': 3000,
+  'Kogi': 3000,
+  'Ebonyi': 3000,
+  'Imo': 3000,
+  'Abia': 3000,
+  'Bayelsa': 3500,
+  'Other': 5000
+};
+
+function getDeliveryFee(state) {
+  return deliveryFees[state] || 0;
+}
+
+// Update delivery fee and grand total on state change or cart update
+function updateDeliveryAndGrandTotal() {
+  const regionSelect = document.getElementById('region');
+  const deliveryFeeInput = document.getElementById('deliveryFee');
+  const grandTotalInput = document.getElementById('grandTotal');
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cartTotal = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+  let state = regionSelect ? regionSelect.value : '';
+  let deliveryFee = getDeliveryFee(state);
+  let grandTotal = cartTotal + deliveryFee;
+  if (deliveryFeeInput) deliveryFeeInput.value = deliveryFee > 0 ? `₦${deliveryFee.toLocaleString()}` : '';
+  if (grandTotalInput) grandTotalInput.value = `₦${grandTotal.toLocaleString()}`;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const regionSelect = document.getElementById('region');
+  if (regionSelect) {
+    regionSelect.addEventListener('change', updateDeliveryAndGrandTotal);
+  }
+  updateDeliveryAndGrandTotal();
+});
+
 // Update cart display
 function updateCart() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -422,7 +490,13 @@ if (checkoutForm) {
       });
     }
 
-    message += `\n💰 *Total:* ₦${total.toFixed(2)}\n`;
+    let state = region;
+    let deliveryFee = getDeliveryFee(state);
+    let grandTotal = total + deliveryFee;
+
+    message += `\n🚚 *Delivery Fee:* ₦${deliveryFee.toLocaleString()}\n`;
+    message += `💰 *Grand Total:* ₦${grandTotal.toLocaleString()}\n`;
+
     message += `💳 *Payment Method:* ${paymentMethod}\n`;
 
     if (transactionId) {
